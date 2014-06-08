@@ -1,4 +1,4 @@
-var app = angular.module("FKTalk", ['ionic', 'PhoneGap', 'ngTouch']);
+var app = angular.module("JuMeFood", ['ionic', 'PhoneGap', 'ngTouch']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider
@@ -11,25 +11,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/login',
 			templateUrl: 'templates/login.html',
 			controller: 'LoginCtrl'
+		})
+		.state('JuMeFood', {
+			url: '/JuMeFood',
+			templateUrl: 'templates/juMeFood.html',
+			controller: 'JuMeFoodCtrl'
 		});
 
 	// $urlRouterProvider.otherwise("/Reminder/0961276368/3");
 });
 
-app.run(function($rootScope, FKManager, $window, PushNotificationsFactory, $ionicLoading, MQTTActions, ServerAPI, PhoneGap, FacebookAPI) {
-	var version = "FKTalk v2.2";
+app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, PhoneGap, FacebookAPI, MQTTActions) {
+	var version = "JuMeFood v3.0";
 	console.log(version);
 	$rootScope.info = {
 		server: "http://192.168.1.176:8888",
 		timeout: 15000,
 		gcmSenderId: '389225011519',
 		FBAppId: '270369976420378',
-		loginType: {
-			Register: -1,
-			FKTalk: 0,
-			Facebook: 1, 
-			Google: 2,
-		},
 	};
 	console.log($rootScope.info.server);
 	FacebookAPI.init();
@@ -57,61 +56,38 @@ app.run(function($rootScope, FKManager, $window, PushNotificationsFactory, $ioni
 
 	$rootScope.testLogin = function(){
 		$rootScope.hideLoading();
-
-		var host = FKManager.getHost();
-		console.log("HOST: " + JSON.stringify(host));
-		if(typeof host.type !== "undefined"){
-			$rootScope.showLoading("Auto Login...");
-
-			var fkLoginType = $rootScope.info.loginType;
-			var loginForm = {
-				type: host.type,
-				gcmRegId: $rootScope.info.gcmRegId,
-			};
-			if(host.type == fkLoginType.Facebook){
-				FacebookAPI.login(function(fkToken){
-					loginForm.arg = fkToken;
-					ServerAPI.login(loginForm);
-				});
-			}
-			if(host.type == fkLoginType.FKTalk){
-				loginForm.arg = host.arg;
-				ServerAPI.login(loginForm);
-			}
-		}
-		else{
-			$window.location = "#/login";
-		}
+		$window.location = "#/login"
 	}
 
 	$rootScope.onLoginSuccess = function(response){
-		ServerAPI.listFriends();
 		PhoneGap.ready(function(){
-            var clientId = "FK" + response.phone;
-            var topic = "FK" + response.token;
+            var clientId = "JuMe" + response.FBId;
+            var topic = "JuMe" + response.token;
 			$window.plugins.MQTTPlugin.CONNECT(angular.noop, angular.noop, clientId, topic);
 		});
-		$window.location = "#/tab/FList";
+		console.log("Success: Login")
 	}
 
 	$rootScope.successGetGCMRegId = function(gcmRegId){
-		console.log("SUCCESS: GET gcmRegId=>" + gcmRegId);
+		console.log("SUCCESS: Get GCMRegId=>" + gcmRegId);
 		$rootScope.info.gcmRegId = gcmRegId;
 
 		$rootScope.testLogin();
-	};
-
-	$rootScope.showLoading(version);
-	PushNotificationsFactory();
+	}
 
 	$window.receiveMessage = function(payload) {
 		var message = payload.length < 2000 ? payload : payload.length;
 		console.log('SUCCESS FROM MQTT: ' + message);
 		var res = JSON.parse(payload);
-		if(!res || !res.action || !res.data)
+		if(!res || !res.action || !res.data){
+			console.log("Received Error MQTTActions");
 			return;
+		}
 		MQTTActions[res.action](res.data);
-	};
+	}
+
+	$rootScope.showLoading(version);
+	PushNotificationsFactory();
 });
 
 app.filter('orderObjectBy', function(){
