@@ -1,5 +1,6 @@
 app.factory("Core", function() {
 	var roomList = {};
+	var turntable = {};
 
 	function addRoom(datas){
 		if(checkDatas(datas, ["roomId", "master", "title", "time"])){
@@ -54,6 +55,10 @@ app.factory("Core", function() {
 		}
 	}
 
+	function setTurntable(advises){
+		turntable = advises;
+	}
+
 	function checkDatas(datas, array){
 		for(var i in array){
 			if(typeof(datas[array[i]]) === "undefined")
@@ -84,5 +89,7 @@ app.factory("Core", function() {
 
 	return{
 		roomList: roomList,
+		setTurntable: setTurntable,
+		turntable: turntable,
 	}
 });

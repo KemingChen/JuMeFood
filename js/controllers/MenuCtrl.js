@@ -11,6 +11,12 @@ app.controller('MenuCtrl', function($scope, $state, Core, $window, $ionicSideMen
 		$window.location = "#/Room/" + room.roomId;
 	}
 
+	$scope.moveToTurnable = function(){
+		Core.setTurntable($scope.room.advises);
+		$ionicSideMenuDelegate.toggleLeft($scope);
+		$window.location = "#/Turntable";
+	}
+
 	$scope.canOpenLeftMenu = function(){
 		var permission = ["JuMeFood", "Room"];
 		return permission.indexOf($state.$current.name) >= 0;
