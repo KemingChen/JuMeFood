@@ -1,12 +1,26 @@
-app.controller('MenuCtrl', function($scope, $state){
-	$scope.canOpenRoomsMenu = function(){
-		var permission = ["JuMeFood"];
+app.controller('MenuCtrl', function($scope, $state, Core, $window, $ionicSideMenuDelegate){
+	$scope.roomList = Core.roomList;
+
+	$scope.$on('EnterRoom', function(event, args) {
+		console.log(args);
+		$scope.room = args.room;
+	});
+
+	$scope.moveToRoom = function(room){
+		$ionicSideMenuDelegate.toggleLeft($scope);
+		$window.location = "#/Room/" + room.roomId;
+	}
+
+	$scope.canOpenLeftMenu = function(){
+		var permission = ["JuMeFood", "Room"];
 		return permission.indexOf($state.$current.name) >= 0;
 	}
 
-	$scope.list = [
-		{ text: '1 Page One', iconClass: 'icon ion-map', link: 'one'},
-		{ text: '2 Page Two', iconClass: 'icon ion-gear-b', link: 'two'},
-		{ text: '3 Page Three', iconClass: 'icon ion-star', link: 'three'}
-	];
+	$scope.canShow = function(array){
+		return array.indexOf($state.$current.name) >= 0;
+	}
+
+	$scope.hasAdvises = function(){
+		return Object.keys(scope.room.advises).length > 0;
+	}
 });

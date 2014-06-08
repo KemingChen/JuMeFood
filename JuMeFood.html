@@ -30,10 +30,12 @@
 		<script src="js/FacebookAPI.js"></script>
 		<script src="js/ServerAPI.js"></script>
 		<script src="js/MQTTActions.js"></script>
+		<script src="js/Core.js"></script>
 
 		<script src="js/controllers/LoginCtrl.js"></script>
 		<script src="js/controllers/JuMeFoodCtrl.js"></script>
 		<script src="js/controllers/MenuCtrl.js"></script>
+		<script src="js/controllers/RoomCtrl.js"></script>
 	</head>
 	<body ng-app="JuMeFood">
 		<div ng-controller="MenuCtrl">
@@ -44,19 +46,73 @@
 						animation="nav-title-slide-ios7"></ion-nav-bar>
 					<ion-nav-view></ion-nav-view>
 				</ion-pane>
+
 				<!-- Left Rooms Menu -->
-				<ion-side-menu side="left" is-enabled="canOpenRoomsMenu()">
-					<ion-header-bar class="bar bar-header bar-assertive">
-						<h1 class="title">Menu</h1>
-					</ion-header-bar>
-					<ion-content has-header="true">
-						<ion-list>
-							<ion-item ng-click="goTo(item.link)" class="item item-icon-left" ng-repeat="item in list">
-								<i ng-class="item.iconClass"></i>
-								{{item.text}}
-							</ion-item>
-						</ion-list>
-					</ion-content>
+				<ion-side-menu side="left" is-enabled="canOpenLeftMenu()">
+					<div ng-show="canShow(['JuMeFood'])">
+						<div class="bar bar-header bar-assertive">
+							<h1 class="title">聊天室列表</h1>
+						</div>
+						<ion-content has-header="true" padding="false">
+							<div ng-repeat="room in roomList" 
+								class="item item-avatar" ng-click="moveToRoom(room)">
+								<img ng-src="{{room.master.photo}}"/>
+								<h2 class="bloder">{{room.title}}</h2>
+								<span class="bloder" style="font-size: 10px;">
+									{{room.time | date:'yyyy-MM-dd ah:mm'}}
+								</span>
+								<br/>
+								<span style="font-size: 10px;">
+									By {{room.master.name}}
+								</span>
+							</div>
+						</ion-content>
+					</div>
+
+					<div ng-show="canShow(['Room'])">
+						<div class="bar bar-header bar-assertive">
+							<h1 class="title">意見列表</h1>
+						</div>
+						<ion-content has-header="true" padding="false">
+							<div class="list">
+								<div ng-repeat="advise in room.advises" 
+									class="item item-avatar">
+									<img ng-src="{{room.members[advise.uId].photo}}"/>
+									<h2 class="bloder">{{advise.name}}</h2>
+									<span style="font-size: 10px;">
+										By {{room.members[advise.uId].name}}
+									</span>
+								</div>
+							</div>
+
+							<div class="list">
+								<div class="item item-divider">
+									個人功能
+								</div>
+								<div class="item item-icon-right">
+									<span class="bloder">增加意見</span>
+									<i class="icon ion-plus-circled"></i>
+								</div>
+								<div class="item item-icon-right">
+									<span class="bloder">退出聊天室</span>
+									<i class="icon ion-log-out"></i>
+								</div>
+							</div>
+
+							<div class="list">
+								<div class="item item-divider">
+									室長功能
+								</div>
+								<div class="item item-icon-right">
+									<span class="bloder">GO~ 美食轉轉樂</span>
+									<i class="icon ion-android-locate"></i>
+								</div>
+							</div>
+
+							<div class="list" style="padding-bottom: 50px;"></div>
+						</ion-content>
+
+					</div>
 				</ion-side-menu>
 			</ion-side-menus>
 		</div>

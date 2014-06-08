@@ -16,6 +16,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/JuMeFood',
 			templateUrl: 'templates/juMeFood.html',
 			controller: 'JuMeFoodCtrl'
+		})
+		.state('Room', {
+			url: '/Room/:roomId',
+			templateUrl: 'templates/chatRoom.html',
+			controller: 'RoomCtrl'
+		})
+		.state('Turntable', {
+			url: '/Turntable',
+			templateUrl: 'templates/turntable.html',
+			controller: 'TurntableCtrl'
 		});
 
 	// $urlRouterProvider.otherwise("/Reminder/0961276368/3");
@@ -56,6 +66,9 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 
 	$rootScope.testLogin = function(){
 		$rootScope.hideLoading();
+
+		$rootScope.info.uId = 2;
+
 		$window.location = "#/login"
 	}
 

@@ -18,3 +18,11 @@ a, abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, c
 .bloder {
 	font-weight: bolder;
 }
+
+.MainButton {
+	margin-top: 40px;
+}
+
+.MainButton img{
+	width: 100%;
+}
