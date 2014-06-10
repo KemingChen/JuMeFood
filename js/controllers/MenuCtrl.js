@@ -1,4 +1,4 @@
-app.controller('MenuCtrl', function($scope, $state, Core, $window, $ionicSideMenuDelegate){
+app.controller('MenuCtrl', function($scope, $state, Core, $ionicSideMenuDelegate){
 	$scope.roomList = Core.roomList;
 
 	$scope.$on('EnterRoom', function(event, args) {
@@ -6,24 +6,34 @@ app.controller('MenuCtrl', function($scope, $state, Core, $window, $ionicSideMen
 		$scope.room = args.room;
 	});
 
-	$scope.moveToRoom = function(room){
-		// $ionicSideMenuDelegate.toggleLeft($scope);
-		$window.location = "#/Room/" + room.roomId;
+	$scope.rMoveToRoom = function(room){
+		$ionicSideMenuDelegate.toggleRight($scope);
+		$state.go('Room', {roomId: room.roomId});
 	}
 
-	$scope.moveToTurnable = function(){
-		Core.setTurntable($scope.room.advises);
+	$scope.lMoveTo = function(state){
 		$ionicSideMenuDelegate.toggleLeft($scope);
-		$window.location = "#/Turntable";
+		$state.go(state);
+	}
+
+	$scope.rMoveToTurnable = function(){
+		Core.setTurntable($scope.room.advises);
+		$ionicSideMenuDelegate.toggleRight($scope);
+		$state.go('Turntable');
+	}
+
+	$scope.lMoveToRoomList = function(){
+		$ionicSideMenuDelegate.toggleLeft($scope);
+		$ionicSideMenuDelegate.toggleRight($scope);
 	}
 
 	$scope.canOpenLeftMenu = function(){
-		var permission = ["JuMeFood", "Room"];
+		var permission = ["Room", "NewRoom", "Turntable"];
 		return permission.indexOf($state.$current.name) >= 0;
 	}
 
 	$scope.canOpenRightMenu = function(){
-		var permission = ["JuMeFood", "Room"];
+		var permission = ["JuMeFood", "Room", "NewRoom", "Turntable"];
 		return permission.indexOf($state.$current.name) >= 0;
 	}
 

@@ -1,4 +1,4 @@
-app.controller('NewRoomCtrl', function($scope, $window, Core, $state){
+app.controller('NewRoomCtrl', function($scope, $window, Core, $state, $ionicSideMenuDelegate){
 	$scope.MoveTo = function(state){
 		Core.createTemp("NewRoom", {
 			friends: $scope.friends,
@@ -7,6 +7,10 @@ app.controller('NewRoomCtrl', function($scope, $window, Core, $state){
 			FBFriends: $scope.FBFriends,
 		});
 		$state.go(state);
+	}
+	
+	$scope.slideLeft = function(){
+		$ionicSideMenuDelegate.toggleLeft($scope);
 	}
 
 	$scope.showPicker = function(type){
