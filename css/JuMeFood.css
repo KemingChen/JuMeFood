@@ -77,3 +77,22 @@ a, abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, c
 .textRight{
 	text-align: right;
 }
+
+ul {
+
+}
+
+.jSlots-wrapper {
+    overflow: hidden;
+    height: 20px;
+    display: inline-block; /* to size correctly, can use float too, or width*/
+    border: 1px solid #999;
+}
+
+.slot {
+	padding: 0;
+    margin: 0;
+    list-style: none;
+    float: left;
+}
+
