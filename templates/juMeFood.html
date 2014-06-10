@@ -2,21 +2,22 @@
 	<div class="bar bar-header bar-positive">
 		<h1 class="title">Jume Food</h1>
 	</div>
-	<ion-content has-header="true" padding="false" class="JuMe-background" style="text-align: center;">
-		<div class="list">
-		    <a class="item item-avatar" href="#">
-				<img src="venkman.jpg">
-				<h2>Venkman</h2>
-				<p>Back off, man. I'm a scientist.</p>
-		    </a>
-		    <a class="item item-avatar" href="#">
-				<img src="venkman.jpg">
-				<h1>我要推薦</h1>
-		    </a>
-		    <a class="item item-avatar" href="#NewRoom">
-				<span class= "ion-person-stalker"></span>
-				<h1>糾食</h1>
-		    </a>
+	<ion-pane has-header="true" padding="false" class="JuMe-background" style="text-align: center;">
+		<div class="row MainButton" style="margin-top: 100px;">
+			<div class="col" style="height:100%;display:table;width:50%">
+				<div class="fumeMenuBtn" ng-click="MoveTo('NewRoom')">揪食朋友</div>
+			</div>
+			<div class="col" style="height:100%;display:table;width:50%">
+				<div class="fumeMenuBtn">我的揪食</div>
+			</div>
 		</div>
-	</ion-content>
+		<div class="row MainButton">
+			<div class="col" style="height:100%;display:table;width:50%">
+				<div class="fumeMenuBtn">揪食搖搖</div>
+			</div>
+			<div class="col" style="height:100%;display:table;width:50%">
+				<div class="fumeMenuBtn">推薦揪食</div>
+			</div>
+		</div>
+	</ion-pane>
 </div>
