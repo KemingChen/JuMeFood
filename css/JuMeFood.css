@@ -27,7 +27,7 @@ a, abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, c
 	height: 40%; vertical-align: middle; display: table-cell;
 }
 
-.fumeMenuBtn {
+.jumeMenuBtn {
 	-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
 	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
@@ -84,15 +84,33 @@ ul {
 
 .jSlots-wrapper {
     overflow: hidden;
-    height: 20px;
-    display: inline-block; /* to size correctly, can use float too, or width*/
+    height: 100px;
+    display: inline-block;
     border: 1px solid #999;
+    width: 50%;
 }
 
 .slot {
-	padding: 0;
+	padding: 0px;
     margin: 0;
     list-style: none;
     float: left;
+    width: 100%;
 }
 
+.slot-item {
+	height: 100px;
+	text-align: center;
+	background-color: #fff;
+}
+
+.jume-table{
+	display:table;
+	height: 100%;
+	width: 100%;
+}
+.jume-cell{
+	display:table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
