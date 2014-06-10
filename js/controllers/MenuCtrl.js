@@ -7,7 +7,7 @@ app.controller('MenuCtrl', function($scope, $state, Core, $window, $ionicSideMen
 	});
 
 	$scope.moveToRoom = function(room){
-		$ionicSideMenuDelegate.toggleLeft($scope);
+		// $ionicSideMenuDelegate.toggleLeft($scope);
 		$window.location = "#/Room/" + room.roomId;
 	}
 
@@ -29,9 +29,5 @@ app.controller('MenuCtrl', function($scope, $state, Core, $window, $ionicSideMen
 
 	$scope.canShow = function(array){
 		return array.indexOf($state.$current.name) >= 0;
-	}
-
-	$scope.hasAdvises = function(){
-		return Object.keys(scope.room.advises).length > 0;
 	}
 });
