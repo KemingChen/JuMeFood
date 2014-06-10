@@ -1,21 +1,23 @@
 <div>
-	<ion-content has-header="false" padding="false" class="JuMe-background" style="text-align: center;">
-		<div class="row MainButton" style="margin-top: 40px;">
-			<div class="col col-80 col-offset-10">
-				<img src="images/JuMeGo.png" ng-click="MoveTo('NewRoom')"/>
-			</div>
-		</div>
-
-		<div class="row MainButton" style="margin-top: 40px;">
-			<div class="col col-80 col-offset-10">
-				<img src="images/GourmetShake.png" ng-click=""/>
-			</div>
-		</div>
-
-		<div class="row MainButton" style="margin-top: 40px;">
-			<div class="col col-80 col-offset-10">
-				<img src="images/NewSuggest.png" ng-click=""/>
-			</div>
+	<div class="bar bar-header bar-positive">
+		<button class="button button-icon icon ion-navicon" ng-click="slideLeft()"></button>
+		<h1 class="title">Jume Food</h1>
+	</div>
+	<ion-content has-header="true" padding="false" class="JuMe-background" style="text-align: center;">
+		<div class="list">
+		    <a class="item item-avatar" href="#">
+				<img src="venkman.jpg">
+				<h2>Venkman</h2>
+				<p>Back off, man. I'm a scientist.</p>
+		    </a>
+		    <a class="item item-avatar" href="#">
+				<img src="venkman.jpg">
+				<h1>我要推薦</h1>
+		    </a>
+		    <a class="item item-avatar" href="#">
+				<span class= "ion-person-stalker"></span>
+				<h1>糾食</h1>
+		    </a>
 		</div>
 	</ion-content>
 </div>
