@@ -1,0 +1,19 @@
+<div ng-init="init()">
+	<div class="bar bar-header bar-positive">
+		<button class="button icon-left ion-chevron-left button-clear"
+			ng-click="MoveTo('NewRoom')"></button>
+		<h1 class="title">選擇揪食朋友</h1>
+	</div>
+	<ion-content has-header="true" padding="true" class="JuMe-background">
+		<div class="list">
+			<div class="item item-avatar item-icon-right" ng-repeat="friend in FBFriends">
+				<img ng-src="{{friend.photo}}">
+				<h2>{{friend.name}}</h2>
+				<label class="icon checkbox">
+					<input type="checkbox" ng-model="friends[friend.id]" 
+						ng-true-value="{{friend.name}}" ng-change="test()">
+				</label>
+			</div>
+		</div>
+	</ion-content>
+</div>

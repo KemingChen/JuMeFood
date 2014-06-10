@@ -1,4 +1,4 @@
-<div ng-init="initStartTime()">
+<div ng-init="init()">
 	<div class="bar bar-header bar-positive">
 		<h1 class="title">揪新團</h1>
 	</div>
@@ -10,7 +10,7 @@
 			<div class="item" style="padding: 0">
 				<div class="row">
 					<div class="col col-80 col-offset-10">
-						<input type="text" placeholder="午餐吃沙米哩~~">
+						<input type="text" ng-model="title" placeholder="午餐吃沙米哩~~">
 					</div>
 				</div>
 			</div><br />
@@ -36,10 +36,14 @@
 			</div><br />
 
 			<div class="item item-divider">
-				揪食伙伴
+				揪食夥伴
 			</div>
-			<div class="item item-icon-right" ng-click="">
-				<span>尚未增加任何人</span>
+			<div class="item item-icon-right" ng-click="MoveTo('SetRoomFriends')">
+				<span ng-show="isNoFriends()">快點此加入夥伴 ~ &nbsp;&nbsp;^.&lt;</span>
+				<span class="badge badge-assertive" ng-repeat="friend in friends"
+					style="float: left;" ng-show="friend"> 
+					{{friend}}
+				</span>
 				<i class="icon ion-arrow-right-c"></i>
 			</div><br />
 

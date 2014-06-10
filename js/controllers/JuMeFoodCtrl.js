@@ -1,5 +1,7 @@
-app.controller('JuMeFoodCtrl', function($scope, $window, $ionicSideMenuDelegate){
+app.controller('JuMeFoodCtrl', function($scope, $window, $ionicSideMenuDelegate, Core){
 	$scope.MoveTo = function(state){
+		if(state == "NewRoom")
+			Core.deleteTemp("NewRoom");
 		$window.location = "#/" + state;
 	}
 	

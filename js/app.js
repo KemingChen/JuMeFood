@@ -22,6 +22,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: 'templates/newRoom.html',
 			controller: 'NewRoomCtrl'
 		})
+		.state('SetRoomFriends', {
+			url: '/SetRoomFriends',
+			templateUrl: 'templates/chooseFriends.html',
+			controller: 'NewRoomCtrl'
+		})
 		.state('Room', {
 			url: '/Room/:roomId',
 			templateUrl: 'templates/chatRoom.html',

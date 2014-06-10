@@ -64,6 +64,7 @@ app.factory('FacebookAPI', function($window, $rootScope, Notification) {
 					errorHandle(res);
 				}
 				else if(callback && res.data){
+					res.data.photo = "https://graph.facebook.com/" + res.data.id + "/picture";
 					callback(res.data);
 				}
 			},
