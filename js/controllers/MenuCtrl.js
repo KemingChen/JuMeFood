@@ -22,6 +22,11 @@ app.controller('MenuCtrl', function($scope, $state, Core, $window, $ionicSideMen
 		return permission.indexOf($state.$current.name) >= 0;
 	}
 
+	$scope.canOpenRightMenu = function(){
+		var permission = ["JuMeFood", "Room"];
+		return permission.indexOf($state.$current.name) >= 0;
+	}
+
 	$scope.canShow = function(array){
 		return array.indexOf($state.$current.name) >= 0;
 	}

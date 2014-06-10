@@ -96,9 +96,6 @@ app.controller('NewRoomCtrl', function($scope, $window, Core, $state){
 	}
 
 	/* -------------- Test ---------------*/
-	$scope.test = function(){
-		console.log($scope.friends);
-	}
 
 	function getFBfriends(){
 		var datas = [

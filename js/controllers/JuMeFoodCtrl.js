@@ -5,7 +5,7 @@ app.controller('JuMeFoodCtrl', function($scope, $window, $ionicSideMenuDelegate,
 		$window.location = "#/" + state;
 	}
 	
-	$scope.slideLeft = function(){
-		$ionicSideMenuDelegate.toggleLeft($scope);
+	$scope.slideRight = function(){
+		$ionicSideMenuDelegate.toggleRight($scope);
 	}
 });
