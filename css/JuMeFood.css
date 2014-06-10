@@ -26,3 +26,7 @@ a, abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, c
 .MainButton img{
 	width: 100%;
 }
+
+.textRight{
+	text-align: right;
+}

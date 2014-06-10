@@ -17,6 +17,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: 'templates/juMeFood.html',
 			controller: 'JuMeFoodCtrl'
 		})
+		.state('NewRoom', {
+			url: '/NewRoom',
+			templateUrl: 'templates/newRoom.html',
+			controller: 'NewRoomCtrl'
+		})
 		.state('Room', {
 			url: '/Room/:roomId',
 			templateUrl: 'templates/chatRoom.html',
@@ -99,7 +104,7 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 		MQTTActions[res.action](res.data);
 	}
 
-	$rootScope.showLoading(version);
+	//$rootScope.showLoading(version);
 	PushNotificationsFactory();
 });
 

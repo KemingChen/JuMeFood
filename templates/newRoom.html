@@ -1,0 +1,51 @@
+<div ng-init="initStartTime()">
+	<div class="bar bar-header bar-positive">
+		<h1 class="title">揪新團</h1>
+	</div>
+	<ion-content has-header="true" padding="true" class="JuMe-background">
+		<div class="list">
+			<div class="item item-divider">
+				揪團名稱
+			</div>
+			<div class="item" style="padding: 0">
+				<div class="row">
+					<div class="col col-80 col-offset-10">
+						<input type="text" placeholder="午餐吃沙米哩~~">
+					</div>
+				</div>
+			</div><br />
+
+			<div class="item item-divider">
+				揪食時間
+			</div>
+			<div class="item" style="padding-top: 0px;padding-bottom: 0px;">
+				<div class="row">
+					<div class="col col-50" style="font-size: 20px">
+						<button class="button button-stable icon-left ion-android-calendar button-full" 
+							ng-click="showPicker('date')">
+							{{startTime.date | date:'yyyy-MM-dd'}}
+						</button>
+					</div>
+					<div class="col col-50" style="font-size: 20px">
+						<button class="button button-stable icon-left ion-android-clock button-full"
+							ng-click="showPicker('time')">
+							{{startTime.time | date:'a h:mm'}}
+						</button>
+					</div>
+				</div>
+			</div><br />
+
+			<div class="item item-divider">
+				揪食伙伴
+			</div>
+			<div class="item item-icon-right" ng-click="">
+				<span>尚未增加任何人</span>
+				<i class="icon ion-arrow-right-c"></i>
+			</div><br />
+
+			<button class="button button-positive button-full">
+				揪團 Go ~~~
+			</button>
+		</div>
+	</ion-content>
+</div>
