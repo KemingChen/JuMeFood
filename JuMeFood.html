@@ -55,13 +55,13 @@
 
 				<!-- Right Menu -->
 				<ion-side-menu side="right" is-enabled="canOpenRightMenu()">
-					<div ng-show="canShow(['JuMeFood'])">
+					<div ng-show="canShow(['JuMeFood', 'Turntable', 'NewRoom'])">
 						<div class="bar bar-header bar-assertive">
 							<h1 class="title">聊天室列表</h1>
 						</div>
 						<ion-content has-header="true" padding="false">
 							<div ng-repeat="room in roomList" 
-								class="item item-avatar" ng-click="moveToRoom(room)">
+								class="item item-avatar" ng-click="rMoveToRoom(room)">
 								<img ng-src="{{room.master.photo}}"/>
 								<h2 class="bloder">{{room.title}}</h2>
 								<span class="bloder" style="font-size: 10px;">
@@ -95,7 +95,7 @@
 									<i class="icon ion-beer"></i>
 								</div>
 								<div class="item item-icon-right item-stable" 
-									ng-click="moveToTurnable()">
+									ng-click="rMoveToTurnable()">
 									<span class="bloder">轉轉樂 ~ Go</span>
 									<i class="icon ion-coffee"></i>
 								</div>
@@ -110,44 +110,51 @@
 				<ion-side-menu side="left" is-enabled="canOpenLeftMenu()">
 					<ion-content has-header="false" padding="false">
 						<div class="list">
-							<div class="item item-divider item-energized">
-								聊天室功能
+							<div ng-show="canShow(['Room'])">
+								<div class="item item-divider item-energized">
+									聊天室功能
+								</div>
+								<div class="item item-icon-right item-stable">
+									<span class="bloder">增加意見</span>
+									<i class="icon ion-beer"></i>
+								</div>
+								<div class="item item-icon-right item-stable">
+									<span class="bloder">邀請朋友</span>
+									<i class="icon ion-person-add"></i>
+								</div>
+								<div class="item item-icon-right item-stable">
+									<span class="bloder">退出聊天室</span>
+									<i class="icon ion-log-out"></i>
+								</div><br />
 							</div>
-							<div class="item item-icon-right item-stable">
-								<span class="bloder">增加意見</span>
-								<i class="icon ion-beer"></i>
-							</div>
-							<div class="item item-icon-right item-stable">
-								<span class="bloder">邀請朋友</span>
-								<i class="icon ion-person-add"></i>
-							</div>
-							<div class="item item-icon-right item-stable">
-								<span class="bloder">退出聊天室</span>
-								<i class="icon ion-log-out"></i>
-							</div><br />
 
-							<div class="item item-divider item-energized">
-								個人功能
-							</div>
-							<div class="item item-icon-right item-stable">
-								<span class="bloder">回首頁</span>
-								<i class="icon ion-home"></i>
-							</div>
-							<div class="item item-icon-right item-stable">
-								<span class="bloder">揪新團</span>
-								<i class="icon ion-ios7-plus"></i>
-							</div>
-							<div class="item item-icon-right item-stable">
-								<span class="bloder">揪團列表</span>
-								<i class="icon ion-chatboxes"></i>
-							</div>
-							<div class="item item-icon-right item-stable">
-								<span class="bloder">美食轉轉樂</span>
-								<i class="icon ion-coffee"></i>
+							<div ng-show="canShow(['Room', 'Turntable', 'NewRoom'])">
+								<div class="item item-divider item-energized">
+									個人功能
+								</div>
+								<div class="item item-icon-right item-stable" 
+									ng-click="lMoveTo('JuMeFood')">
+									<span class="bloder">回首頁</span>
+									<i class="icon ion-home"></i>
+								</div>
+								<div class="item item-icon-right item-stable" 
+									ng-click="lMoveTo('NewRoom')">
+									<span class="bloder">揪新團</span>
+									<i class="icon ion-ios7-plus"></i>
+								</div>
+								<div class="item item-icon-right item-stable"
+									ng-show="!canShow(['Room'])"
+									ng-click="lMoveToRoomList()">
+									<span class="bloder">揪團列表</span>
+									<i class="icon ion-chatboxes"></i>
+								</div>
+								<div class="item item-icon-right item-stable" 
+									ng-click="lMoveTo('Turntable')">
+									<span class="bloder">美食轉轉樂</span>
+									<i class="icon ion-coffee"></i>
+								</div><br />
 							</div>
 						</div>
-
-						<div class="list" style="padding-bottom: 50px;"></div>
 					</ion-content>
 				</ion-side-menu>
 			</ion-side-menus>

@@ -11,4 +11,9 @@ app.controller('RoomCtrl', function($scope, $rootScope, Core, $stateParams){
 	function throwRoomError(roomId){
 		throw "No This Room ID: " + roomId;
 	}
+
+	/* ------- Test ------------ */
+	$scope.test = function(){
+		$rootScope.$broadcast('EnterRoom', {room: $scope.room});
+	}
 });
