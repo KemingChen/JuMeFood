@@ -129,7 +129,7 @@
 								</div><br />
 							</div>
 
-							<div ng-show="canShow(['Room', 'Turntable', 'NewRoom'])">
+							<div ng-show="canShow(['Room', 'Turntable', 'NewRoom', 'NewAdvice'])">
 								<div class="item item-divider item-energized">
 									個人功能
 								</div>
@@ -144,7 +144,7 @@
 									<i class="icon ion-ios7-plus"></i>
 								</div>
 								<div class="item item-icon-right item-stable"
-									ng-show="!canShow(['Room', 'Turntable'])"
+									ng-show="!canShow(['Room', 'Turntable', 'NewAdvice'])"
 									ng-click="lMoveToRoomList()">
 									<span class="bloder">我的揪食</span>
 									<i class="icon ion-chatboxes"></i>

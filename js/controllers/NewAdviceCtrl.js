@@ -1,13 +1,14 @@
-app.controller('NewAdviceCtrl', function($scope, $state, $ionicSideMenuDelegate, Core){
+app.controller('NewAdviceCtrl', function($scope, $state, $ionicSideMenuDelegate, Core, ServerAPI){
 	$scope.search = "";
 	$scope.customOpinion = "";
 
-	var store = Core.store;
+	var stores = Core.stores;
+	console.log(stores);
 
 	$scope.filter = function(key){
 		$scope.search = key;
 		$scope.filterStores = [];
-		angular.forEach(store, function(obj){
+		angular.forEach(stores, function(obj){
 			if(key == "" || obj.name.match(key) !== null){
 				$scope.filterStores.push(obj);
 			}
@@ -24,9 +25,15 @@ app.controller('NewAdviceCtrl', function($scope, $state, $ionicSideMenuDelegate,
 
 	$scope.ok = function(){
 		var opinion = "";
-		if($scope.customOpinion != "")opinion = $scope.customOpinion;
+		if($scope.customOpinion.trim() != "")opinion = $scope.customOpinion;
 		else opinion = $scope.selection;
 		console.log(opinion);
+
+		// 以下我不知道你要怎麼寫 QQ
+		ServerAPI.sendAdvice({
+			rid: rid, 
+			sid| name: ,
+		})
 	}
 
 	$scope.slideLeft = function(){
