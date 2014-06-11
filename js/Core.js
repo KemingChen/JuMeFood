@@ -1,6 +1,42 @@
 app.factory("Core", function($window, $rootScope) {
+	return{
+		roomList: roomList,
+		inviteds: inviteds,
+		stores: stores,
+
+		addInvited: addInvited,
+		addRoom: addRoom,
+		addMember: addMember,
+		addChat: addChat,
+		addAdvise: addAdvise,
+		addStore: addStore,
+
+		getTemp: getTemp,
+		createTemp: createTemp,
+		deleteTemp: deleteTemp,
+
+		setHost: setHost,
+		getHost: getHost,
+
+		checkLogin: checkLogin,
+	}
+
 	var temps = {};
 	var roomList = {};
+	var inviteds = {};
+	var stores = {};
+
+	function addInvited(datas){
+		if(checkDatas(datas, ["rid", "title", "master", "time"])){
+			inviteds[datas.rid] = {
+				rid: datas.rid,
+				master: datas.master,
+				title: datas.title,
+				time: (new Date(datas.time)).getTime(),
+			}
+			// console.log(inviteds);
+		}
+	}
 
 	function addRoom(datas){
 		if(checkDatas(datas, ["rid", "master", "title", "time"])){
@@ -9,11 +45,12 @@ app.factory("Core", function($window, $rootScope) {
 				master: datas.master,
 				title: datas.title,
 				time: (new Date(datas.time)).getTime(),
+				goalUId: null,
 				chats: {},
 				members: {},
 				advises: {},
 			}
-			console.log(roomList);
+			// console.log(roomList);
 		}
 	}
 
@@ -32,9 +69,9 @@ app.factory("Core", function($window, $rootScope) {
 	}
 
 	function addChat(datas){
-		if(checkDatas(datas, ["rid", "mId", "uid", "message", "timestamp"])){
+		if(checkDatas(datas, ["rid", "mid", "uid", "message", "timestamp"])){
 			if(roomList[datas.rid]){
-				roomList[datas.rid].chats[datas.mId] = {
+				roomList[datas.rid].chats[datas.mid] = {
 					uid: datas.uid,
 					message: datas.message,
 					timestamp: (new Date(datas.timestamp)).getTime(),
@@ -44,12 +81,27 @@ app.factory("Core", function($window, $rootScope) {
 	}
 
 	function addAdvise(datas){
-		if(checkDatas(datas, ["rid", "storeId", "name", "uid"])){
+		if(checkDatas(datas, ["rid", "sid", "name", "uid"])){
 			if(roomList[datas.rid]){
+				roomList[datas.rid].goalUId = datas.goalUId ? datas.goalUId : null;
 				roomList[datas.rid].advises[datas.uid] = {
 					uid: datas.uid,
 					name: datas.name,
-					storeId: datas.storeId,
+					sid: datas.sid,
+				}
+			}
+		}
+	}
+
+	function addStore(datas){
+		if(checkDatas(datas, ["sid", "name", "price", "latitude", "longitude"])){
+			if(stores[datas.sid]){
+				stores[datas.sid] = {
+					sid: datas.sid,
+					name: datas.name,
+					price: datas.price,
+					latitude: datas.latitude,
+					longitude: datas.longitude,
 				}
 			}
 		}
@@ -99,31 +151,14 @@ app.factory("Core", function($window, $rootScope) {
 	addMember({rid: 1, uid: 2, name: "Keming", photo: "http://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t1.0-1/c21.76.462.462/s160x160/546081_4583705557198_1334797284_n.jpg", isAccept: true});
 	addMember({rid: 1, uid: 3, name: "Kai", photo: "http://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/t1.0-1/c1.105.539.539/s160x160/10177381_864736900207514_741078063891111022_n.jpg", isAccept: false});
 
-	addChat({rid: 1, mId: 1, uid: 1, message: "哈囉各位~~~", timestamp: "2014-06-8 21:06:01"});
-	addChat({rid: 1, mId: 2, uid: 2, message: "Hi!!!!", timestamp: "2014-06-8 21:07:01"});
-	addChat({rid: 1, mId: 3, uid: 3, message: "要吃高家嗎?", timestamp: "2014-06-8 21:08:01"});
-	addChat({rid: 1, mId: 4, uid: 1, message: "哎唷~ 不錯唷~~~~", timestamp: "2014-06-8 21:09:01"});
-	addChat({rid: 1, mId: 5, uid: 3, message: "推薦了 '高家涼麵'", timestamp: "2014-06-8 21:09:11"});
-	addChat({rid: 1, mId: 6, uid: 2, message: "推薦了 '楊記餛飩麵'", timestamp: "2014-06-8 21:11:15"});
-	addChat({rid: 1, mId: 7, uid: 2, message: "我想吃這個....", timestamp: "2014-06-8 21:11:19"});
+	addChat({rid: 1, mid: 1, uid: 1, message: "哈囉各位~~~", timestamp: "2014-06-8 21:06:01"});
+	addChat({rid: 1, mid: 2, uid: 2, message: "Hi!!!!", timestamp: "2014-06-8 21:07:01"});
+	addChat({rid: 1, mid: 3, uid: 3, message: "要吃高家嗎?", timestamp: "2014-06-8 21:08:01"});
+	addChat({rid: 1, mid: 4, uid: 1, message: "哎唷~ 不錯唷~~~~", timestamp: "2014-06-8 21:09:01"});
+	addChat({rid: 1, mid: 5, uid: 3, message: "推薦了 '高家涼麵'", timestamp: "2014-06-8 21:09:11"});
+	addChat({rid: 1, mid: 6, uid: 2, message: "推薦了 '楊記餛飩麵'", timestamp: "2014-06-8 21:11:15"});
+	addChat({rid: 1, mid: 7, uid: 2, message: "我想吃這個....", timestamp: "2014-06-8 21:11:19"});
 
-	addAdvise({rid: 1, storeId: null, uid: 3, name: "高家涼麵"});
-	addAdvise({rid: 1, storeId: null, uid: 2, name: "楊記餛飩麵"});
-
-	return{
-		roomList: roomList,
-		addRoom: addRoom,
-		addMember: addMember,
-		addChat: addChat,
-		addAdvise: addAdvise,
-
-		getTemp: getTemp,
-		createTemp: createTemp,
-		deleteTemp: deleteTemp,
-
-		setHost: setHost,
-		getHost: getHost,
-
-		checkLogin: checkLogin,
-	}
+	addAdvise({rid: 1, goalUId: null, sid: null, uid: 3, name: "高家涼麵"});
+	addAdvise({rid: 1, goalUId: null, sid: null, uid: 2, name: "楊記餛飩麵"});
 });
