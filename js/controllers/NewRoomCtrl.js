@@ -1,4 +1,4 @@
-app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state, $ionicSideMenuDelegate, FacebookAPI){
+app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state, $ionicSideMenuDelegate, FacebookAPI, ServerAPI){
 	$scope.MoveTo = function(state){
 		Core.createTemp("NewRoom", {
 			friends: $scope.friends,
@@ -9,12 +9,25 @@ app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state
 		$state.go(state);
 	}
 
+	$scope.changeTitle = function(title){
+		$scope.title = title;
+	}
+
 	$scope.Leave = function(){
 		$state.go('JuMeFood');
 	}
 
+	$scope.newRoom = function(){
+		$rootScope.showLoading("New Room...");
+		ServerAPI.createRoom({
+			time: Math.round(getStartTime().getTime() / 1000),
+			name: $scope.title,
+			FBIds: Object.keys($scope.friends),
+		});
+	}
+
 	$scope.canGo = function(){
-		console.log($scope.title);
+		// console.log($scope.title);
 		return $scope.title.trim() != "" && !$scope.isNoFriends();
 	}
 
