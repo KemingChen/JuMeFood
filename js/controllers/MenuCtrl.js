@@ -34,7 +34,7 @@ app.controller('MenuCtrl', function($scope, $state, Core, $ionicSideMenuDelegate
 	}
 
 	$scope.canOpenLeftMenu = function(){
-		var permission = ["Room", "NewRoom", "Turntable"];
+		var permission = ["Room", "NewRoom", "Turntable", "NewAdvice"];
 		return permission.indexOf($state.$current.name) >= 0;
 	}
 

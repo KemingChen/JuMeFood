@@ -16,7 +16,7 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 	
 	$rootScope.$broadcast('EnterRoom', {room: $scope.room});
 
-	$scope.$on('NewMsg', function(event, args) {
+	$rootScope.$on('NewMsg', function(event, args) {
 		console.log(JSON.stringify(args));
 		console.log(rid == args.rid);
 		if(rid == args.rid){

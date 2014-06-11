@@ -1,4 +1,4 @@
-app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $ionicSideMenuDelegate){
+app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $ionicSideMenuDelegate, ServerAPI){
 	// $scope.room = Core.roomList[1];
 	$scope.room = Core.getTemp("Turntable");
 	console.log(JSON.stringify($scope.room));
@@ -21,21 +21,8 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 		}
 		else
 		{
-			/*
-			api.go(function(result){
-				$('.slot').jSlots({
-					spinner : '#playGo',
-					number : 1,
-					winnerIndex : result,
-					onEnd: function(result){
-						console.log("finish");
-						var store = $scope.room.advices[result[0]];
-						console.log(store);
-					},
-				});
-				$("#playGo").click();		
-			})
-			*/
+			$rootScope.showLoading("");
+			ServerAPI.go({rid: $scope.room.rid});
 		}
 	}
 
