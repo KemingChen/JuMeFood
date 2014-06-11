@@ -27,6 +27,7 @@ app.factory("Core", function($window, $rootScope) {
 				chats: {},
 				members: {},
 				advices: {},
+				isUpdate: false,
 			}
 			// console.log(roomList);
 		}

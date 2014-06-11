@@ -5,8 +5,9 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 	$scope.selfId = $rootScope.info.uid;
 	$scope.room = roomList[rid] ? roomList[rid] : throwRoomError(rid);
 	console.log(JSON.stringify($scope.room));
-	
-	if($scope.room.members == {}){
+
+	if(!$scope.room.isUpdate){
+		$scope.room.isUpdate = true;
 		console.log("Update Room Info!!!");
 		ServerAPI.listRoomMsg({rid: rid});
 		ServerAPI.listRoomMembers({rid: rid});
