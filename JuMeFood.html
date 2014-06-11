@@ -41,6 +41,7 @@
 		<script src="js/controllers/RoomCtrl.js"></script>
 		<script src="js/controllers/NewRoomCtrl.js"></script>
 		<script src="js/controllers/TurntableCtrl.js"></script>
+		<script src="js/controllers/NewAdviceCtrl.js"></script>
 	</head>
 	<body ng-app="JuMeFood">
 		<div ng-controller="MenuCtrl">
@@ -89,7 +90,8 @@
 									</span>
 								</div><br />
 
-								<div class="item item-icon-right item-stable">
+								<div class="item item-icon-right item-stable"
+									ng-click="rMoveToNewAdvice()">
 									<span class="bloder">增加意見</span>
 									<i class="icon ion-beer"></i>
 								</div>
