@@ -28,7 +28,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			controller: 'NewRoomCtrl'
 		})
 		.state('Room', {
-			url: '/Room/:roomId',
+			url: '/Room/:rid',
 			templateUrl: 'templates/chatRoom.html',
 			controller: 'RoomCtrl'
 		})

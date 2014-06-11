@@ -1,9 +1,9 @@
 app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, Core, $stateParams){
-	var roomId = $stateParams.roomId;
+	var rid = $stateParams.rid;
 	var roomList = Core.roomList;
 
-	$scope.selfId = $rootScope.info.uId;
-	$scope.room = roomList[roomId] ? roomList[roomId] : throwRoomError(roomId);
+	$scope.selfId = $rootScope.info.uid;
+	$scope.room = roomList[rid] ? roomList[rid] : throwRoomError(rid);
 
 	$rootScope.$broadcast('EnterRoom', {room: $scope.room});
 	console.log($scope.room);
@@ -16,8 +16,8 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 		$ionicSideMenuDelegate.toggleRight($scope);
 	}
 
-	function throwRoomError(roomId){
-		throw "No This Room ID: " + roomId;
+	function throwRoomError(rid){
+		throw "No This Room ID: " + rid;
 	}
 
 	/* ------- Test ------------ */

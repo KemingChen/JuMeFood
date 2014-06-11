@@ -8,7 +8,8 @@ app.controller('MenuCtrl', function($scope, $state, Core, $ionicSideMenuDelegate
 
 	$scope.rMoveToRoom = function(room){
 		$ionicSideMenuDelegate.toggleRight($scope);
-		$state.go('Room', {roomId: room.roomId});
+		console.log(room);
+		$state.go('Room', {rid: room.rid});
 	}
 
 	$scope.lMoveTo = function(state){

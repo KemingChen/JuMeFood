@@ -9,11 +9,11 @@
 	<ion-content has-header="true" padding="true" class="JuMe-background">
 		<div class="list" style="padding-bottom: 50px;">
 			<div class="item item-divider item-text-wrap" 
-				ng-repeat="chat in room.chats | orderObjectBy:'mId'" 
-				style="{{chat.uId == selfId ? 'text-align: right;' : ''}}">
+				ng-repeat="chat in room.chats | orderObjectBy:'mid'" 
+				style="{{chat.uid == selfId ? 'text-align: right;' : ''}}">
 				<div ng-click="clickMessage(chat)">
-					<img ng-show="!(chat.uId == selfId)" 
-						ng-src="{{room.members[chat.uId].photo}}" 
+					<img ng-show="!(chat.uid == selfId)" 
+						ng-src="{{room.members[chat.uid].photo}}" 
 						style="height: 30px;" />
 					&nbsp;{{chat.message}}
 				</div>
