@@ -1,4 +1,8 @@
 app.factory('ServerAPI', function($window, $rootScope, Notification, Core) {
+	return {
+		login: login,
+	}
+
 	function login(datas){
 		console.log(JSON.stringify(datas));
 		var http = toRequest("/login", datas);

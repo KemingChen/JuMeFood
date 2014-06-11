@@ -45,10 +45,10 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 	var version = "JuMeFood v3.0";
 	console.log(version);
 	$rootScope.info = {
-		server: "http://127.0.0.1:8888",
+		server: "http://192.168.20.101:8888",
 		timeout: 15000,
 		gcmSenderId: '389225011519',
-		FBAppId: '1508615159367232', //'270369976420378',
+		FBAppId: '270369976420378',
 	};
 	console.log($rootScope.info.server);
 	FacebookAPI.init();

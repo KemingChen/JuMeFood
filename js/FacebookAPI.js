@@ -11,6 +11,7 @@ app.factory('FacebookAPI', function($window, $rootScope, Notification) {
 
 	function login(callback){
 		openFB.login('user_about_me,user_birthday,user_friends,email', function(fbToken){
+			console.log(fbToken);
 			if(callback)
 				callback(fbToken);
 		}, errorHandle);
