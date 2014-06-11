@@ -36,8 +36,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/Turntable',
 			templateUrl: 'templates/turntable.html',
 			controller: 'TurntableCtrl'
+		})
+		.state('NewAdvice', {
+			url: '/NewAdvice',
+			templateUrl: 'templates/newAdvice.html',
+			controller: 'NewAdviceCtrl'
 		});
-
 	// $urlRouterProvider.otherwise("/Reminder/0961276368/3");
 });
 
@@ -45,7 +49,7 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 	var version = "JuMeFood v3.0";
 	console.log(version);
 	$rootScope.info = {
-		server: "http://192.168.20.101:8888",
+		server: "http://127.0.0.1:8888",
 		timeout: 15000,
 		gcmSenderId: '389225011519',
 		FBAppId: '270369976420378',

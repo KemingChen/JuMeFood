@@ -16,6 +16,11 @@ app.controller('MenuCtrl', function($scope, $state, Core, $ionicSideMenuDelegate
 		$state.go(state);
 	}
 
+	$scope.rMoveToNewAdvice = function(){
+		$ionicSideMenuDelegate.toggleRight($scope);
+		$state.go('NewAdvice');
+	}
+
 	$scope.rMoveToTurnable = function(){
 		$ionicSideMenuDelegate.toggleRight($scope);
 		$state.go('Turntable');

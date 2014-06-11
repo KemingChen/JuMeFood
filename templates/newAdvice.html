@@ -1,0 +1,50 @@
+<div >
+	<div class="bar bar-header bar-positive" ng-init="filter('')">
+		<button class="button icon-left ion-navicon button-clear"
+			ng-click="slideLeft()"></button>
+		<h1 class="title">新的建議</h1>
+	</div>
+	<ion-content has-header="true" padding="true" class="JuMe-background">
+		<div>
+			<label class="item item-input">
+				<i class="icon ion-arrow-right-c placeholder-icon"></i>
+				<input type="text" placeholder="輸入自己的意見" 
+					ng-model="customOpinion" ng-change="changeOpinion(customOpinion)" />
+			</label>
+			{{customOpinion}}
+		</div>
+		<div class="card">
+			<div class="item item-text-wrap">
+				或選擇以下我們的建議
+			</div>
+		</div>
+		<div class="list">
+			<label class="item item-input">
+				<i class="icon ion-search placeholder-icon"></i>
+				<input type="text" placeholder="Search" ng-model="search" ng-change="filter(search)" />
+			</label>
+			<label class="item item-radio" ng-repeat="store in filterStores" ng-click="select(store)">
+				<input type="radio" name="group">
+				<div class="item-content row">
+					<div class="col">{{store.name}}</div>
+					<div class="col"><span class="badge badge-assertive">平均價位{{store.price}}</span></div>
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+		</div>
+	</ion-content>
+	<div class="bar bar-footer">
+		<div class="col">
+			<button class="button icon ion-checkmark-round button-balanced" 
+				style="width:100%;margin:-10px;margin-left: auto;"
+				ng-click="ok()">
+			</button>
+		</div>
+		<div class="col">
+			<button class="button icon ion-close-round button-assertive" 
+				style="width:100%;margin:-10px;margin-left: auto;"
+				ng-click="cancel()">
+			</button>
+		</div>
+	</div>
+</div>
