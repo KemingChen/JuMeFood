@@ -1,4 +1,4 @@
-app.factory('ServerAPI', function($window, $rootScope, Notification, Core) {
+app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core) {
 	return {
 		login: login,
 	}
@@ -17,7 +17,8 @@ app.factory('ServerAPI', function($window, $rootScope, Notification, Core) {
 				$rootScope.onLoginSuccess(respnose);
 			}
 			else{
-				Notification.alert(respnose.errors, function(){
+				console.log(respnose.errors.code);
+				Notification.alert(respnose.errors.code, function(){
 					Core.setHost({});
 					$rootScope.testLogin();
 				}, "Error", "確定");
@@ -55,7 +56,7 @@ app.factory('ServerAPI', function($window, $rootScope, Notification, Core) {
 
 	function isError(respnose){
 		console.log("RESPONSE: " + JSON.stringify(respnose));
-		return typeof respnose.errors === "string";
+		return typeof respnose.errors != undefined;
 	}
 
 	function showNetworkError(message, callback){
