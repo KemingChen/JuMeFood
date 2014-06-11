@@ -1,10 +1,22 @@
 app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core) {
 	return {
 		login: login,
+		listInvited: listInvited,
+		listRooms: listRooms,
+		listRoomMembers: listRoomMembers,
+		listRoomAdvices: listRoomAdvices,
+		listRoomMsg: listRoomMsg,
+		createRoom: createRoom,
+		quitRoom: quitRoom,
+		sendAdvice: sendAdvice,
+		sendMsg: sendMsg,
+		listStore: listStore,
+		go: go,
+		acceptInvitation: acceptInvitation,
+		refuseInvitation: refuseInvitation,
 	}
 
 	function login(datas){
-		console.log(JSON.stringify(datas));
 		var http = toRequest("/login", datas);
 
 		http.success(function(respnose, status) {
@@ -31,6 +43,150 @@ app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core
 			}, 1000);
 		});
 	}
+
+	function listInvited(){
+		var http = toRequest("/listInvited", {}, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				listInvited();
+			}, 1000);
+		});
+	}
+
+	function listRooms(){
+		var http = toRequest("/listRooms", {}, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				listRooms();
+			}, 1000);
+		});
+	}
+
+	function listRoomMembers(datas){
+		var http = toRequest("/listRoomMembers", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				listRoomMembers(datas);
+			}, 1000);
+		});
+	}
+
+	function listRoomAdvices(datas){
+		var http = toRequest("/listRoomAdvices", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				listRoomAdvices(datas);
+			}, 1000);
+		});
+	}
+
+	function listRoomMsg(datas){
+		var http = toRequest("/listRoomMsg", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				listRoomMsg(datas);
+			}, 1000);
+		});
+	}
+
+	function createRoom(datas){
+		var http = toRequest("/createRoom", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				createRoom(datas);
+			}, 1000);
+		});
+	}
+
+	function quitRoom(datas){
+		var http = toRequest("/quitRoom", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				quitRoom(datas);
+			}, 1000);
+		});
+	}
+
+	function sendAdvice(datas){
+		var http = toRequest("/sendAdvice", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				sendAdvice(datas);
+			}, 1000);
+		});
+	}
+
+	function sendMsg(datas){
+		var http = toRequest("/sendMsg", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				sendMsg(datas);
+			}, 1000);
+		});
+	}
+
+	function listStore(datas){
+		var http = toRequest("/listStore", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				listStore(datas);
+			}, 1000);
+		});
+	}
+
+	function go(datas){
+		var http = toRequest("/go", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				go(datas);
+			}, 1000);
+		});
+	}
+
+	function acceptInvitation(datas){
+		var http = toRequest("/acceptInvitation", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				acceptInvitation(datas);
+			}, 1000);
+		});
+	}
+
+	function refuseInvitation(datas){
+		var http = toRequest("/refuseInvitation", datas, true);
+
+		http.success(doNothing);
+		http.error(function(data, status){
+			$timeout(function(){
+				refuseInvitation(datas);
+			}, 1000);
+		});
+	}
+
 
 	function toRequest(action, data, useToken){
 		var info = $rootScope.info;
@@ -70,6 +226,8 @@ app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core
 	}
 
 	function doNothing(respnose, status){
+		$rootScope.hideLoading();
+		console.log("SUCCESS: " + toLog(respnose, 300));
 		if(!isError(respnose)){
 			console.log("Respnose Do Nothing!!!");
 		}
