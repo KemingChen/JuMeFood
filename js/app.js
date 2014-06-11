@@ -93,8 +93,8 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 
 	$rootScope.onLoginSuccess = function(response){
 		PhoneGap.ready(function(){
-            var clientId = "JuMe" + response.FBId;
-            var topic = "JuMe" + response.token;
+			var clientId = "JuMe" + response.FBId;
+            var topic = "JuMe-" + response.token;
 			$window.plugins.MQTTPlugin.CONNECT(angular.noop, angular.noop, clientId, topic);
 
 			ServerAPI.listRooms();

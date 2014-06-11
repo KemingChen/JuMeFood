@@ -5,7 +5,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
 			for(var i in invitedList){
 				var invited = invitedList[i];
 				invited.master = getMaster(invited);
-				invited.time = (new Date(invited.time)).getTime();
+				invited.time = invited.time * 1000;
 				Core.addInvited(invited);
 			}
 		}
@@ -17,11 +17,11 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
 
 	function listRooms(datas){
 		if(!isError(datas)){
-			var rooms = datas.roomList;
+			var rooms = datas;
 			for(var i in rooms){
 				var room = rooms[i];
 				room.master = getMaster(room);
-				room.time = (new Date(room.time)).getTime();
+				room.time = room.time * 1000;
 				Core.addRoom(room);
 			}
 		}
@@ -81,6 +81,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
 	function createRoom(datas){
 		if(!isError(datas)){
 			datas.master = getMaster(datas);
+			datas.time = datas.time * 1000;
 			Core.addRoom(datas);
 		}
 		else{
