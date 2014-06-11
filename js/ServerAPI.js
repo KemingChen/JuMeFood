@@ -1,4 +1,4 @@
-app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core) {
+app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core, $timeout) {
 	return {
 		login: login,
 		listInvited: listInvited,
@@ -39,7 +39,7 @@ app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core
 		http.error(function(data, status){
 			$rootScope.showLoading("網路不穩, Login Retry...");
 			$timeout(function(){
-				login(loginForm);
+				// login(datas);
 			}, 1000);
 		});
 	}
@@ -191,11 +191,12 @@ app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core
 	function toRequest(action, data, useToken){
 		var info = $rootScope.info;
 		var api = info.server + action;
-		console.log("use api: " + api + ", DATA: " + toLog(data, 300));
 		
 		if(useToken && typeof data === "object"){
+			console.log("using Token!!!");
 			data.token = info.token;
 		}
+		console.log("use api: " + api + ", DATA: " + toLog(data, 300));
 
 		return $http({
 			method: 'POST',
@@ -205,9 +206,9 @@ app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core
 		});
 	}
 
-	function toLog(log, length){
-		if(typeof log === "object")
-			log = JSON.stringify(log);
+	function toLog(data, length){
+		if(typeof data === "object")
+			log = JSON.stringify(data);
 		return  log.length >= length ? log.substr(0, length) + "..." : log;
 	}
 
