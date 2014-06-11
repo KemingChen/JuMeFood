@@ -106,10 +106,11 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 			ServerAPI.listStore({tag: 1});
 
 			// Test
-			/*
+			
 			$window.receiveMessage('{"action":"listStore","data":[{"sid":1,"name":"高家涼麵","price":40,"latitude":25.042524,"longitude":121.539728},{"sid":2,"name":"垃圾麵","price":40,"latitude":25.043507,"longitude":121.53176},{"sid":3,"name":"漢堡王","price":100,"latitude":25.044112,"longitude":121.53144},{"sid":5,"name":"嵐迪義大利麵","price":100,"latitude":25.0428984,"longitude":121.5314894}]}');
-			$window.receiveMessage('{"action":"listRooms","data":[{"rid":6,"title":"aaa","masterUid":8,"masterName":"Keming Chen","masterPhoto":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t1.0-1/c21.76.462.462/s100x100/546081_4583705557198_1334797284_n.jpg","time":1402513200},{"rid":7,"title":"QQQ","masterUid":8,"masterName":"Keming Chen","masterPhoto":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t1.0-1/c21.76.462.462/s100x100/546081_4583705557198_1334797284_n.jpg","time":1402515000},{"rid":8,"title":"宵夜團","masterUid":8,"masterName":"Keming Chen","masterPhoto":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t1.0-1/c21.76.462.462/s100x100/546081_4583705557198_1334797284_n.jpg","time":1402516800},{"rid":9,"title":"衝衝團","masterUid":8,"masterName":"Keming Chen","masterPhoto":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t1.0-1/c21.76.462.462/s100x100/546081_4583705557198_1334797284_n.jpg","time":1402516800}]}');
-			*/
+			$window.receiveMessage('{"action":"listRooms","data":[{"rid":1,"title":"QQ","masterUid":8,"masterName":"Keming Chen","masterPhoto":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t1.0-1/c21.76.462.462/s100x100/546081_4583705557198_1334797284_n.jpg","time":1402527600}]}');
+			$window.receiveMessage('{"action":"listRoomMembers","data":{"rid":"1","members":[{"uid":7,"status":"accept","name":"謝宗廷","photo":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t1.0-1/c37.55.466.466/s100x100/547766_578607275491125_1443285479_n.jpg"},{"uid":9,"status":"accept","name":"Keming Chen","photo":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t1.0-1/c21.76.462.462/s100x100/546081_4583705557198_1334797284_n.jpg"}]}}');
+			$window.receiveMessage('{"action":"listRoomAdvices","data":{"rid":1,"goalUid":null,"advices":[{"rid":1,"uid":7,"sid":2,"name":"高家涼麵"},{"rid":1,"uid":9,"sid":1,"name":"楊記餛飩面"}]}}');
 		});
 		console.log("Success: Login");
 		$window.location = "#/JuMeFood";
@@ -138,13 +139,6 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 		time.setSeconds(0);
 		return time;
 	}
-
-	$scope.$on('GO', function(event, args) {
-		var room = Core.roomList[args.rid];
-		room.goalUId = args.goal;
-		Core.createTemp("Turntable", room);
-		$state.go("Turntable");
-	});
 
 	$window.receiveMessage = function(payload) {
 		var message = payload.length < 2000 ? payload : payload.length;

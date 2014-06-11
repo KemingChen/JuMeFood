@@ -81,12 +81,12 @@
 						</div>
 						<ion-content has-header="true" padding="false">
 							<div class="list">
-								<div ng-repeat="advise in room.advises" 
+								<div ng-repeat="advice in room.advices" 
 									class="item item-avatar item-stable">
-									<img ng-src="{{room.members[advise.uid].photo}}"/>
-									<h2 class="bloder">{{advise.name}}</h2>
+									<img ng-src="{{room.members[advice.uid].photo}}"/>
+									<h2 class="bloder">{{advice.name}}</h2>
 									<span style="font-size: 10px;">
-										By {{room.members[advise.uid].name}}
+										By {{room.members[advice.uid].name}}
 									</span>
 								</div><br />
 
