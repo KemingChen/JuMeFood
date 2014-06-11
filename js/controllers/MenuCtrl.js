@@ -24,6 +24,7 @@ app.controller('MenuCtrl', function($scope, $state, Core, $ionicSideMenuDelegate
 
 	$scope.rMoveToTurnable = function(){
 		$ionicSideMenuDelegate.toggleRight($scope);
+		Core.createTemp("Turntable", $scope.room);
 		$state.go('Turntable');
 	}
 
