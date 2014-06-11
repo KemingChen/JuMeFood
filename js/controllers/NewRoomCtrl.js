@@ -35,6 +35,17 @@ app.controller('NewRoomCtrl', function($scope, $window, Core, $state, $ionicSide
 		initStartTime();
 	}
 
+	$scope.cancelAddFriend = function(){
+		console.log( $scope.tempFriends);
+		Core.createTemp("NewRoom", {
+			friends: $scope.tempFriends,
+			title: $scope.title,
+			startTime: getStartTime(),
+			FBFriends: $scope.FBFriends,
+		});
+		$state.go('NewRoom');
+	}
+
 	function loadTemp(){
 		var datas = Core.getTemp("NewRoom");
 		if(datas){
@@ -50,6 +61,8 @@ app.controller('NewRoomCtrl', function($scope, $window, Core, $state, $ionicSide
 			$scope.startTime = getInitTime();
 			$scope.FBFriends = getFBfriends();
 		}
+		//use to implement cancel add friends
+		$scope.tempFriends = angular.copy($scope.friends);
 	}
 
 	function getStartTime(){

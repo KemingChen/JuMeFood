@@ -1,7 +1,5 @@
 <div ng-init="init()">
 	<div class="bar bar-header bar-positive">
-		<button class="button icon-left ion-chevron-left button-clear"
-			ng-click="MoveTo('NewRoom')"></button>
 		<h1 class="title">選擇揪食朋友</h1>
 	</div>
 	<ion-content has-header="true" padding="true" class="JuMe-background">
@@ -16,4 +14,18 @@
 			</div>
 		</div>
 	</ion-content>
+	<div class="bar bar-footer">
+		<div class="col">
+			<button class="button icon ion-checkmark-round button-balanced" 
+				style="width:100%;margin:-10px;margin-left: auto;"
+				ng-click="MoveTo('NewRoom')">
+			</button>
+		</div>
+		<div class="col">
+			<button class="button icon ion-close-round button-assertive" 
+				style="width:100%;margin:-10px;margin-left: auto;"
+				ng-click="cancelAddFriend()">
+			</button>
+		</div>
+	</div>
 </div>
