@@ -41,11 +41,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	// $urlRouterProvider.otherwise("/Reminder/0961276368/3");
 });
 
-app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, PhoneGap, FacebookAPI, MQTTActions) {
+app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, PhoneGap, FacebookAPI, MQTTActions, Core) {
 	var version = "JuMeFood v3.0";
 	console.log(version);
 	$rootScope.info = {
-		server: "http://192.168.1.176:8888",
+		server: "http://192.168.20.101:8888",
 		timeout: 15000,
 		gcmSenderId: '389225011519',
 		FBAppId: '270369976420378',
@@ -76,10 +76,18 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 
 	$rootScope.testLogin = function(){
 		$rootScope.hideLoading();
+		var response = Core.getHost();
+		if(response.token){
+			FacebookAPI.login(function(FBToken){
+				ServerAPI.login({
+					GCMId: $rootScope.info.gcmRegId,
+					FBToken: FBToken,
+				});
+			});
+			return;
+		}
 
-		$rootScope.info.uId = 2;
-
-		$window.location = "#/login"
+		$window.location = "#/login";
 	}
 
 	$rootScope.onLoginSuccess = function(response){
@@ -88,7 +96,8 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
             var topic = "JuMe" + response.token;
 			$window.plugins.MQTTPlugin.CONNECT(angular.noop, angular.noop, clientId, topic);
 		});
-		console.log("Success: Login")
+		console.log("Success: Login");
+		$window.location = "#/JuMeFood";
 	}
 
 	$rootScope.successGetGCMRegId = function(gcmRegId){

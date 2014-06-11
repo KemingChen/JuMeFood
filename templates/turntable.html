@@ -31,13 +31,13 @@
 			<div class="item item-divider">
 				要吃甚麼好呢?
 			</div>
-			<div class="item item-stable" style="padding: 0">
-				<div class="row">
+			<div class="item item-stable" style="padding: 0;height: 110px;width: 100%;">
+				<div class="row" style="width: 100%;">
 					<div class="col col-10">
 						<i class="icon ion-play" 
 							style="float: right;padding-top: 25px;"></i>
 					</div>
-					<ul class="slot list col">
+					<ul class="slot list col col-100">
 			   			<li class="item item-avatar slot-item"
 			   				ng-repeat="advise in room.advises">
 							<img ng-src="{{room.members[advise.uId].photo}}"/>

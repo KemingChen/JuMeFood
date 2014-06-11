@@ -1,6 +1,12 @@
-app.controller('LoginCtrl', function($scope, $window, $state){
+app.controller('LoginCtrl', function($scope, $rootScope, $window, $state, ServerAPI, FacebookAPI){
 	console.log($state.$current.name);
+	
 	$scope.login = function(){
-		$window.location = "#/JuMeFood";
+		FacebookAPI.login(function(FBToken){
+			ServerAPI.login({
+				GCMId: $rootScope.info.gcmRegId ? $rootScope.info.gcmRegId : "NoGCMId",
+				FBToken: FBToken,
+			});
+		});
 	}
 });
