@@ -4,7 +4,7 @@ app.controller('LoginCtrl', function($scope, $rootScope, $window, $state, Server
 	$scope.login = function(){
 		FacebookAPI.login(function(FBToken){
 			ServerAPI.login({
-				GCMId: $rootScope.info.gcmRegId ? $rootScope.info.gcmRegId : "123456",
+				GCMId: $rootScope.info.gcmRegId ? $rootScope.info.gcmRegId : "NoGCMId",
 				FBToken: FBToken,
 			});
 		});

@@ -31,6 +31,7 @@ app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core
 			}, 1000);
 		});
 	}
+
 	function toRequest(action, data, useToken){
 		var info = $rootScope.info;
 		var api = info.server + action;
@@ -56,7 +57,7 @@ app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core
 
 	function isError(respnose){
 		console.log("RESPONSE: " + JSON.stringify(respnose));
-		return typeof respnose.errors != undefined;
+		return typeof respnose.errors != "undefined";
 	}
 
 	function showNetworkError(message, callback){
