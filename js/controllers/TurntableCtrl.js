@@ -1,7 +1,7 @@
 app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $ionicSideMenuDelegate){
 	// $scope.room = Core.roomList[1];
 	$scope.room = Core.getTemp("Turntable");
-	console.log($scope.room);
+	console.log(JSON.stringify($scope.room));
 	$rootScope.$broadcast('EnterRoom', {room: $scope.room});
 
 	$timeout(function(){
@@ -15,10 +15,10 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 		});
 	}, 100);
 
-	$scope.isNoAdvises = function(){
-		var advises = $scope.room.advises;
-		for(var i in advises){
-			if(advises[i])
+	$scope.isNoAdvices = function(){
+		var advices = $scope.room.advices;
+		for(var i in advices){
+			if(advices[i])
 				return false;
 		}
 		return true;

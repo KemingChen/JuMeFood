@@ -22,12 +22,13 @@ app.controller('JuMeFoodCtrl', function($scope, $rootScope, $state, $ionicSideMe
 				goalUId: null,
 				chats: {},
 				members: {"Server": {name: "Server", photo: "images/NoPhoto.jpg", uid: "Server"}},
-				advises: {},
+				advices: {},
 			};
 			var stores = Core.stores;
+			console.log(stores);
 			for(var i in Core.stores){
 				var store = stores[i];
-				room.advises[store.sid] = {
+				room.advices[store.sid] = {
 					sid: store.sid,
 					name: store.name,
 					uid: "Server",

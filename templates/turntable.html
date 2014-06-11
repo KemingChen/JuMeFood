@@ -19,12 +19,12 @@
 			</div>
 			<div class="item" style="padding: 0">
 				<div class="item item-icon-right" ng-click="slideRight()">
-					<span ng-show="isNoAdvises()">快點此增加意見 ~ &nbsp;&nbsp;^.&lt;</span>
-					<span class="badge badge-assertive" ng-repeat="advise in room.advises"
-						style="float: left;" ng-show="advise"> 
-						{{advise.name}}
+					<span ng-show="isNoAdvices()">快點此增加意見 ~ &nbsp;&nbsp;^.&lt;</span>
+					<span class="badge badge-assertive" ng-repeat="advice in room.advices"
+						style="float: left;" ng-show="advice"> 
+						{{advice.name}}
 					</span>
-					<i class="icon ion-arrow-right-c"></i>
+					<i class="icon ion-arrow-right-c" ng-show="room.rid != 'self'"></i>
 				</div>
 			</div><br />
 
@@ -39,11 +39,11 @@
 					</div>
 					<ul class="slot list col col-100">
 			   			<li class="item item-avatar slot-item"
-			   				ng-repeat="advise in room.advises">
-							<img ng-src="{{room.members[advise.uid].photo}}"/>
-							<h2 class="bloder">{{advise.name}}</h2>
+			   				ng-repeat="advice in room.advices">
+							<img ng-src="{{room.members[advice.uid].photo}}"/>
+							<h2 class="bloder">{{advice.name}}</h2>
 							<span style="font-size: 10px;">
-								By {{room.members[advise.uid].name}}
+								By {{room.members[advice.uid].name}}
 							</span>
 			   			</li>
 					</ul>

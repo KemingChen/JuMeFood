@@ -26,7 +26,7 @@ app.factory("Core", function($window, $rootScope) {
 				goalUId: null,
 				chats: {},
 				members: {},
-				advises: {},
+				advices: {},
 			}
 			// console.log(roomList);
 		}
@@ -59,11 +59,11 @@ app.factory("Core", function($window, $rootScope) {
 		}
 	}
 
-	function addAdvise(datas){
+	function addAdvice(datas){
 		if(checkDatas(datas, ["rid", "sid", "name", "uid"])){
 			if(roomList[datas.rid]){
 				roomList[datas.rid].goalUId = datas.goalUId ? datas.goalUId : null;
-				roomList[datas.rid].advises[datas.uid] = {
+				roomList[datas.rid].advices[datas.uid] = {
 					uid: datas.uid,
 					name: datas.name,
 					sid: datas.sid,
@@ -73,23 +73,25 @@ app.factory("Core", function($window, $rootScope) {
 	}
 
 	function addStore(datas){
+		console.log(datas);
 		if(checkDatas(datas, ["sid", "name", "price", "latitude", "longitude"])){
-			if(stores[datas.sid]){
-				stores[datas.sid] = {
-					sid: datas.sid,
-					name: datas.name,
-					price: datas.price,
-					latitude: datas.latitude,
-					longitude: datas.longitude,
-				}
-			}
+			stores[datas.sid] = {
+				sid: datas.sid,
+				name: datas.name,
+				price: datas.price,
+				latitude: datas.latitude,
+				longitude: datas.longitude,
+			};
 		}
+		console.log(stores);
 	}
 
 	function checkDatas(datas, array){
 		for(var i in array){
-			if(typeof(datas[array[i]]) === "undefined")
+			if(typeof(datas[array[i]]) === "undefined"){
+				console.log("checkDatas Error!!!");
 				return false;
+			}
 		}
 		return true;
 	}
@@ -140,8 +142,8 @@ app.factory("Core", function($window, $rootScope) {
 	addChat({rid: 1, mid: 6, uid: 2, message: "推薦了 '楊記餛飩麵'", timestamp: "2014-06-8 21:11:15"});
 	addChat({rid: 1, mid: 7, uid: 2, message: "我想吃這個....", timestamp: "2014-06-8 21:11:19"});
 
-	addAdvise({rid: 1, goalUId: null, sid: null, uid: 3, name: "高家涼麵"});
-	addAdvise({rid: 1, goalUId: null, sid: null, uid: 2, name: "楊記餛飩麵"});
+	addAdvice({rid: 1, goalUId: null, sid: null, uid: 3, name: "高家涼麵"});
+	addAdvice({rid: 1, goalUId: null, sid: null, uid: 2, name: "楊記餛飩麵"});
 	*/
 
 	return{
@@ -153,7 +155,7 @@ app.factory("Core", function($window, $rootScope) {
 		addRoom: addRoom,
 		addMember: addMember,
 		addChat: addChat,
-		addAdvise: addAdvise,
+		addAdvice: addAdvice,
 		addStore: addStore,
 
 		getTemp: getTemp,

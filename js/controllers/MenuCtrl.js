@@ -33,7 +33,9 @@ app.controller('MenuCtrl', function($scope, $state, Core, $ionicSideMenuDelegate
 	}
 
 	$scope.canOpenRightMenu = function(){
-		var permission = ["JuMeFood", "Room", "NewRoom", "Turntable"];
+		var permission = ["JuMeFood", "Room", "NewRoom"];
+		if($scope.room.rid != 'self')
+			permission.push("Turntable");
 		return permission.indexOf($state.$current.name) >= 0;
 	}
 

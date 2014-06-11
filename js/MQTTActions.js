@@ -140,7 +140,9 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 
 	function listStore(datas){
 		if(!isError(datas)){
-			Core.addStore(datas);
+			for(var i in datas){
+				Core.addStore(datas[i]);
+			}
 		}
 		else{
 			console.log(datas.errors);
