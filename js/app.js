@@ -98,6 +98,8 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 			$window.plugins.MQTTPlugin.CONNECT(angular.noop, angular.noop, clientId, topic);
 
 			ServerAPI.listRooms();
+			ServerAPI.listInvited();
+			ServerAPI.listStore({tag: 1});
 		});
 		console.log("Success: Login");
 		$window.location = "#/JuMeFood";
@@ -108,6 +110,23 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 		$rootScope.info.gcmRegId = gcmRegId;
 
 		$rootScope.testLogin();
+	}
+
+	$rootScope.getInitTime = function(){
+		var time = new Date();
+		time.setMinutes(time.getMinutes() + 20);
+		var hour = time.getHours();
+		var min = time.getMinutes();
+		if(min > 30){
+			time.setMinutes(0);
+			time.setHours(hour + 1);
+		}
+		else{
+			time.setMinutes(30);
+		}
+		time.setMilliseconds(0);
+		time.setSeconds(0);
+		return time;
 	}
 
 	$window.receiveMessage = function(payload) {

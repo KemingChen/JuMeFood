@@ -5,7 +5,12 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 	$scope.selfId = $rootScope.info.uid;
 	$scope.room = roomList[rid] ? roomList[rid] : throwRoomError(rid);
 
-	ServerAPI.listRoomMsg({rid: rid});
+	if($scope.room.members == {}){
+		ServerAPI.listRoomMsg({rid: rid});
+		ServerAPI.listRoomMembers({rid: rid});
+		ServerAPI.listRoomAdvices({rid: rid});
+	}
+	
 	$rootScope.$broadcast('EnterRoom', {room: $scope.room});
 
 	$scope.$on('NewMsg', function(event, args) {

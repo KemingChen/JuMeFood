@@ -1,4 +1,4 @@
-app.controller('JuMeFoodCtrl', function($scope, $state, $ionicSideMenuDelegate, Core, Notification){
+app.controller('JuMeFoodCtrl', function($scope, $rootScope, $state, $ionicSideMenuDelegate, Core, Notification){
 	// Core.checkLogin();
 
 	$scope.MoveTo = function(state){
@@ -8,6 +8,34 @@ app.controller('JuMeFoodCtrl', function($scope, $state, $ionicSideMenuDelegate, 
 		}
 		if(state == "NewRoom")
 			Core.deleteTemp("NewRoom");
+		if(state == "Turntable"){
+			var info = $rootScope.info;
+			var room = {
+				rid: "self",
+				master: {
+					uid: info.uid,
+					name: info.name,
+					photo: info.photo,
+				},
+				title: "一個人的享受時光",
+				time: $rootScope.getInitTime().getTime(),
+				goalUId: null,
+				chats: {},
+				members: {"Server": {name: "Server", photo: "images/NoPhoto.jpg", uid: "Server"}},
+				advises: {},
+			};
+			var stores = Core.stores;
+			for(var i in Core.stores){
+				var store = stores[i];
+				room.advises[store.sid] = {
+					sid: store.sid,
+					name: store.name,
+					uid: "Server",
+				};
+			}
+			Core.createTemp("Turntable", room);
+		}
+			
 		$state.go(state);
 	}
 	

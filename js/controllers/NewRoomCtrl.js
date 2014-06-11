@@ -78,7 +78,7 @@ app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state
 			$rootScope.showLoading("Loading Facebook...");
 			$scope.friends = {};
 			$scope.title = "";
-			$scope.startTime = getInitTime();
+			$scope.startTime = $rootScope.getInitTime();
 			FacebookAPI.login(function(){
 				$scope.FBFriends = FacebookAPI.friends(function(FBFriends){
 					console.log(FBFriends);
@@ -113,23 +113,6 @@ app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state
 			date: time,
 			time: time,
 		}
-	}
-
-	function getInitTime(){
-		var time = new Date();
-		time.setMinutes(time.getMinutes() + 20);
-		var hour = time.getHours();
-		var min = time.getMinutes();
-		if(min > 30){
-			time.setMinutes(0);
-			time.setHours(hour + 1);
-		}
-		else{
-			time.setMinutes(30);
-		}
-		time.setMilliseconds(0);
-		time.setSeconds(0);
-		return time;
 	}
 
 	$scope.isNoFriends = function (){

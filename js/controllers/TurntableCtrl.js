@@ -1,5 +1,6 @@
 app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $ionicSideMenuDelegate){
-	$scope.room = Core.roomList[1];
+	// $scope.room = Core.roomList[1];
+	$scope.room = Core.getTemp("Turntable");
 	console.log($scope.room);
 	$rootScope.$broadcast('EnterRoom', {room: $scope.room});
 
