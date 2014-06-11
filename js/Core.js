@@ -1,30 +1,8 @@
 app.factory("Core", function($window, $rootScope) {
-	return{
-		roomList: roomList,
-		inviteds: inviteds,
-		stores: stores,
-
-		addInvited: addInvited,
-		addRoom: addRoom,
-		addMember: addMember,
-		addChat: addChat,
-		addAdvise: addAdvise,
-		addStore: addStore,
-
-		getTemp: getTemp,
-		createTemp: createTemp,
-		deleteTemp: deleteTemp,
-
-		setHost: setHost,
-		getHost: getHost,
-
-		checkLogin: checkLogin,
-	}
-
-	var temps = {};
 	var roomList = {};
 	var inviteds = {};
 	var stores = {};
+	var myTemp = {};
 
 	function addInvited(datas){
 		if(checkDatas(datas, ["rid", "title", "master", "time"])){
@@ -116,15 +94,15 @@ app.factory("Core", function($window, $rootScope) {
 	}
 
 	function deleteTemp(tag){
-		delete temps[tag];
+		delete myTemp[tag];
 	}
 
 	function createTemp(tag, datas){
-		temps[tag] = datas;
+		myTemp[tag] = datas;
 	}
 
 	function getTemp(tag){
-		return temps[tag];
+		return myTemp[tag] ? myTemp[tag] : null;
 	}
 
 	function setHost(datas){
@@ -136,6 +114,7 @@ app.factory("Core", function($window, $rootScope) {
 	}
 
 	function checkLogin(){
+		console.log("check login: " + $rootScope.info.token);
 		if($rootScope.info.token){
 			return true;
 		}
@@ -161,4 +140,27 @@ app.factory("Core", function($window, $rootScope) {
 
 	addAdvise({rid: 1, goalUId: null, sid: null, uid: 3, name: "高家涼麵"});
 	addAdvise({rid: 1, goalUId: null, sid: null, uid: 2, name: "楊記餛飩麵"});
+
+	return{
+		roomList: roomList,
+		inviteds: inviteds,
+		stores: stores,
+
+		addInvited: addInvited,
+		addRoom: addRoom,
+		addMember: addMember,
+		addChat: addChat,
+		addAdvise: addAdvise,
+		addStore: addStore,
+
+		getTemp: getTemp,
+		createTemp: createTemp,
+		deleteTemp: deleteTemp,
+
+		setHost: setHost,
+		getHost: getHost,
+
+		checkLogin: checkLogin,
+	};
+
 });

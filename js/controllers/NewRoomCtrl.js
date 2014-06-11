@@ -1,4 +1,4 @@
-app.controller('NewRoomCtrl', function($scope, $window, Core, $state, $ionicSideMenuDelegate){
+app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state, $ionicSideMenuDelegate, FacebookAPI){
 	$scope.MoveTo = function(state){
 		Core.createTemp("NewRoom", {
 			friends: $scope.friends,
@@ -8,8 +8,14 @@ app.controller('NewRoomCtrl', function($scope, $window, Core, $state, $ionicSide
 		});
 		$state.go(state);
 	}
+
 	$scope.Leave = function(){
 		$state.go('JuMeFood');
+	}
+
+	$scope.canGo = function(){
+		console.log($scope.title);
+		return $scope.title.trim() != "" && !$scope.isNoFriends();
 	}
 
 	$scope.slideLeft = function(){
@@ -45,10 +51,17 @@ app.controller('NewRoomCtrl', function($scope, $window, Core, $state, $ionicSide
 			$scope.FBFriends = datas.FBFriends;
 		}
 		else{
+			$rootScope.showLoading("Loading Facebook...");
 			$scope.friends = {};
 			$scope.title = "";
 			$scope.startTime = getInitTime();
-			$scope.FBFriends = getFBfriends();
+			FacebookAPI.login(function(){
+				$scope.FBFriends = FacebookAPI.friends(function(FBFriends){
+					console.log(FBFriends);
+					$scope.FBFriends = FBFriends;
+					$rootScope.hideLoading();
+				});
+			});
 		}
 	}
 
@@ -100,96 +113,5 @@ app.controller('NewRoomCtrl', function($scope, $window, Core, $state, $ionicSide
 				return false;
 		}
 		return true;
-	}
-
-	/* -------------- Test ---------------*/
-
-	function getFBfriends(){
-		var datas = [
-			{
-				"name": "KinGhoster Chen", 
-				"id": "1261346803"
-			}, 
-			{
-				"name": "Luā Tîng-Gān", 
-				"id": "1357466415"
-			}, 
-			{
-				"name": "Weizhe Ding", 
-				"id": "1594166637"
-			}, 
-			{
-				"name": "張嘉賢", 
-				"id": "1830196702"
-			}, 
-			{
-				"name": "許展榮", 
-				"id": "100000100188426"
-			}, 
-			{
-				"name": "黃驤", 
-				"id": "100000115320688"
-			}, 
-			{
-				"name": "楊俊仁", 
-				"id": "100000123264499"
-			}, 
-			{
-				"name": "翰良", 
-				"id": "819058634775049"
-			}, 
-			{
-				"name": "唐軒尉", 
-				"id": "100000147641368"
-			}, 
-			{
-				"name": "呂學昱", 
-				"id": "871465529536621"
-			}, 
-			{
-				"name": "彥竹", 
-				"id": "100000255101290"
-			}, 
-			{
-				"name": "謝宗廷", 
-				"id": "100000255741179"
-			}, 
-			{
-				"name": "徐嘉陞", 
-				"id": "100000297708113"
-			}, 
-			{
-				"name": "楊忠霖", 
-				"id": "100000379531646"
-			}, 
-			{
-				"name": "陳碩漢", 
-				"id": "100000381342920"
-			}, 
-			{
-				"name": "WenJye Lo", 
-				"id": "100001277033773"
-			}, 
-			{
-				"name": "陳子琦", 
-				"id": "100001671669392"
-			}, 
-			{
-				"name": "Wang Han-Yu", 
-				"id": "100002002364018"
-			}, 
-			{
-				"name": "劉庭瑋", 
-				"id": "100002023551378"
-			}, 
-			{
-				"name": "Yi-An Chen", 
-				"id": "661227687303554"
-			}];
-		for(var i in datas){
-			datas[i].photo = "https://graph.facebook.com/" + datas[i].id + "/picture";
-		}
-
-		return datas;
 	}
 });

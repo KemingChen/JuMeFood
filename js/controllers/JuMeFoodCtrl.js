@@ -1,5 +1,5 @@
 app.controller('JuMeFoodCtrl', function($scope, $state, $ionicSideMenuDelegate, Core, Notification){
-	Core.checkLogin();
+	// Core.checkLogin();
 
 	$scope.MoveTo = function(state){
 		if(state == ""){

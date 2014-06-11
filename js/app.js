@@ -77,7 +77,8 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 	$rootScope.testLogin = function(){
 		$rootScope.hideLoading();
 		var response = Core.getHost();
-		if(false && response.token){
+		if(response.token){
+			console.log("Auto Login...");
 			FacebookAPI.login(function(FBToken){
 				ServerAPI.login({
 					GCMId: $rootScope.info.gcmRegId,
@@ -95,7 +96,7 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
             var clientId = "JuMe" + response.FBId;
             var topic = "JuMe" + response.token;
 			$window.plugins.MQTTPlugin.CONNECT(angular.noop, angular.noop, clientId, topic);
-			
+
 			ServerAPI.listRooms();
 		});
 		console.log("Success: Login");

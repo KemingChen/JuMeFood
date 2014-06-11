@@ -1,21 +1,4 @@
 app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core, $timeout) {
-	return {
-		login: login,
-		listInvited: listInvited,
-		listRooms: listRooms,
-		listRoomMembers: listRoomMembers,
-		listRoomAdvices: listRoomAdvices,
-		listRoomMsg: listRoomMsg,
-		createRoom: createRoom,
-		quitRoom: quitRoom,
-		sendAdvice: sendAdvice,
-		sendMsg: sendMsg,
-		listStore: listStore,
-		go: go,
-		acceptInvitation: acceptInvitation,
-		refuseInvitation: refuseInvitation,
-	}
-
 	function login(datas){
 		var http = toRequest("/login", datas);
 
@@ -39,7 +22,7 @@ app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core
 		http.error(function(data, status){
 			$rootScope.showLoading("網路不穩, Login Retry...");
 			$timeout(function(){
-				// login(datas);
+				login(datas);
 			}, 1000);
 		});
 	}
@@ -227,10 +210,27 @@ app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core
 	}
 
 	function doNothing(respnose, status){
-		$rootScope.hideLoading();
+		// $rootScope.hideLoading();
 		console.log("SUCCESS: " + toLog(respnose, 300));
 		if(!isError(respnose)){
 			console.log("Respnose Do Nothing!!!");
 		}
+	}
+
+	return {
+		login: login,
+		listInvited: listInvited,
+		listRooms: listRooms,
+		listRoomMembers: listRoomMembers,
+		listRoomAdvices: listRoomAdvices,
+		listRoomMsg: listRoomMsg,
+		createRoom: createRoom,
+		quitRoom: quitRoom,
+		sendAdvice: sendAdvice,
+		sendMsg: sendMsg,
+		listStore: listStore,
+		go: go,
+		acceptInvitation: acceptInvitation,
+		refuseInvitation: refuseInvitation,
 	}
 });

@@ -1,21 +1,4 @@
 app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
-	return{
-		listInvited: listInvited,
-		listRooms: listRooms,
-		listRoomMembers: listRoomMembers,
-		listRoomAdvices: listRoomAdvices,
-		roomMsgs: roomMsgs,
-		createRoom: createRoom,
-		newInvited: newInvited,
-		quitRoom: quitRoom,
-		addAdvice: addAdvice,
-		sendMsg: sendMsg,
-		listStore: listStore,
-		go: go,
-		acceptInvitation: acceptInvitation,
-		refuseInvitation: refuseInvitation,
-	}
-
 	function listInvited(datas){
 		if(!isError(datas)){
 			var invitedList = datas.invitedList;
@@ -210,5 +193,22 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
 	function isError(datas){
 		console.log("RESPONSE: " + JSON.stringify(datas));
 		return typeof datas.errors != "undefined";
+	}
+	
+	return{
+		listInvited: listInvited,
+		listRooms: listRooms,
+		listRoomMembers: listRoomMembers,
+		listRoomAdvices: listRoomAdvices,
+		roomMsgs: roomMsgs,
+		createRoom: createRoom,
+		newInvited: newInvited,
+		quitRoom: quitRoom,
+		addAdvice: addAdvice,
+		sendMsg: sendMsg,
+		listStore: listStore,
+		go: go,
+		acceptInvitation: acceptInvitation,
+		refuseInvitation: refuseInvitation,
 	}	
 });
