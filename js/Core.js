@@ -122,6 +122,7 @@ app.factory("Core", function($window, $rootScope) {
 	}
 
 	// --------- Test ------------- //
+	/*
 	addRoom({rid: 1, master: {uid: 1, name: "Flex", photo: "http://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t1.0-1/c37.55.466.466/s160x160/547766_578607275491125_1443285479_n.jpg"}, title: "午餐吃啥好哩", time: "2014-06-9 12:00:00"})
 	addRoom({rid: 2, master: {uid: 2, name: "Keming", photo: "http://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t1.0-1/c21.76.462.462/s160x160/546081_4583705557198_1334797284_n.jpg"}, title: "想逛夜市拉!!!!", time: "2014-06-8 18:00:00"})
 	addRoom({rid: 3, master: {uid: 3, name: "Kai", photo: "http://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/t1.0-1/c1.105.539.539/s160x160/10177381_864736900207514_741078063891111022_n.jpg"}, title: "不知吃啥好哩QQ", time: "2014-06-12 19:00:00"})
@@ -140,6 +141,7 @@ app.factory("Core", function($window, $rootScope) {
 
 	addAdvise({rid: 1, goalUId: null, sid: null, uid: 3, name: "高家涼麵"});
 	addAdvise({rid: 1, goalUId: null, sid: null, uid: 2, name: "楊記餛飩麵"});
+	*/
 
 	return{
 		roomList: roomList,
