@@ -2,7 +2,6 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 	var rid = $stateParams.rid;
 	var roomList = Core.roomList;
 
-	console.log($rootScope.info);
 	$scope.selfId = $rootScope.info.uid;
 	$scope.room = roomList[rid] ? roomList[rid] : throwRoomError(rid);
 
@@ -10,10 +9,11 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 	$rootScope.$broadcast('EnterRoom', {room: $scope.room});
 
 	$scope.$on('NewMsg', function(event, args) {
-		console.log(args);
+		console.log(JSON.stringify(args));
 		if(rid === args.rid){
 			$timeout($ionicScrollDelegate.scrollBottom, 500);
 		}
+		console.log(JSON.stringify($scope.room));
 	});
 
 	console.log($scope.room);

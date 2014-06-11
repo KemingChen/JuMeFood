@@ -69,7 +69,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 			for(var i in Msgs){
 				var Msg = Msgs[i];
 				Msg.rid = datas.rid;
-				Msg.timestamp = datas.timestamp * 1000;
+				Msg.timestamp = Msg.timestamp * 1000;
 				Core.addChat(Msg);
 			}
 			$rootScope.$broadcast('NewMsg', {rid: datas.rid});
