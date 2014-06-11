@@ -50,6 +50,7 @@ app.factory("Core", function($window, $rootScope) {
 		if(checkDatas(datas, ["rid", "mid", "uid", "message", "timestamp"])){
 			if(roomList[datas.rid]){
 				roomList[datas.rid].chats[datas.mid] = {
+					mid: datas.mid,
 					uid: datas.uid,
 					message: datas.message,
 					timestamp: (new Date(datas.timestamp)).getTime(),

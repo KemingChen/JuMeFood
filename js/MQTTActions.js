@@ -69,6 +69,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 			for(var i in Msgs){
 				var Msg = Msgs[i];
 				Msg.rid = datas.rid;
+				Msg.timestamp = datas.timestamp * 1000;
 				Core.addChat(Msg);
 			}
 		}
@@ -95,6 +96,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 	function newInvited(datas){
 		if(!isError(datas)){
 			datas.master = getMaster(datas);
+			datas.time = datas.time * 1000;
 			Core.addInvited(datas);
 		}
 		else{
@@ -125,6 +127,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 
 	function sendMsg(datas){
 		if(!isError(datas)){
+			datas.timestamp = datas.timestamp * 1000;
 			Core.addChat(datas);
 		}
 		else{
