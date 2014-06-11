@@ -84,10 +84,10 @@ ul {
 
 .jSlots-wrapper {
     overflow: hidden;
-    height: 100px;
     display: inline-block;
     border: 1px solid #999;
-    width: 50%;
+    height: 100px;
+    width: 100%;
 }
 
 .slot {
@@ -99,9 +99,7 @@ ul {
 }
 
 .slot-item {
-	height: 100px;
-	text-align: center;
-	background-color: #fff;
+	width: 100%;
 }
 
 .jume-table{

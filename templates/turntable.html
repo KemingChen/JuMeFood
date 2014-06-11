@@ -1,40 +1,57 @@
 <div>
 	<div class="bar bar-header bar-positive">
-		<h1 class="title">美食轉轉樂</h1>
+		<button class="button icon-left ion-navicon button-clear"
+			ng-click="slideLeft()"></button>
+		<h1 class="title">揪食轉轉</h1>
 	</div>
-	<ion-pane has-header="false" padding="false" class="JuMe-background" style="text-align: center;">
-		<div class="jume-table">
-			<div class="jume-cell">
-				<div>
-		   			<ul class="slot list">
-			   			<li class="slot-item item">
-			   				<div class="jume-table">
-			   					<div class="jume-cell">高家涼麵1</div>
-			   				</div>
-			   			</li>
-			   			<li class="slot-item item item-divider">
-			   				<div class="jume-table">
-			   					<div class="jume-cell">高家涼麵2</div>
-			   				</div>
-		   				</li>
-			   			<li class="slot-item item">
-			   				<div class="jume-table">
-			   					<div class="jume-cell">高家涼麵3</div>
-			   				</div>
-			   			</li>
-			   			<li class="slot-item item item-divider">
-			   				<div class="jume-table">
-			   					<div class="jume-cell">高家涼麵4</div>
-			   				</div>
-		   				</li>
-					</ul>
-				</div>
-				<div>
-					<button id="playNormal" class="button button-small button-assertive" style="width:50%">
-			  			Go
-					</button>
+	<ion-content has-header="true" padding="true" class="JuMe-background">
+		<div class="list">
+			<div class="item item-divider">
+				揪食資訊
+			</div>
+			<div class="item" style="padding-top: 0;padding-bottom: 0">
+				<div class="row">
+					<div class="col">
+						<span class="bloder">{{room.title}}</span>
+						<span style="font-size: 10px;">By {{room.master.name}}</span>
+					</div>
 				</div>
 			</div>
+			<div class="item" style="padding: 0">
+				<div class="item item-icon-right" ng-click="slideRight()">
+					<span ng-show="isNoAdvises()">快點此增加意見 ~ &nbsp;&nbsp;^.&lt;</span>
+					<span class="badge badge-assertive" ng-repeat="advise in room.advises"
+						style="float: left;" ng-show="advise"> 
+						{{advise.name}}
+					</span>
+					<i class="icon ion-arrow-right-c"></i>
+				</div>
+			</div><br />
+
+			<div class="item item-divider">
+				要吃甚麼好呢?
+			</div>
+			<div class="item item-stable" style="padding: 0">
+				<div class="row">
+					<div class="col col-10">
+						<i class="icon ion-play" 
+							style="float: right;padding-top: 25px;"></i>
+					</div>
+					<ul class="slot list col">
+			   			<li class="item item-avatar slot-item"
+			   				ng-repeat="advise in room.advises">
+							<img ng-src="{{room.members[advise.uId].photo}}"/>
+							<h2 class="bloder">{{advise.name}}</h2>
+							<span style="font-size: 10px;">
+								By {{room.members[advise.uId].name}}
+							</span>
+			   			</li>
+					</ul>
+				</div>
+			</div>
+			<button id="playGo" class="button button-full button-assertive">
+	  			神哪!! 請給我意見 ~ 揪咪 ~ Go!!!
+			</button>
 		</div>
-	</ion-pane>
+	</ion-content>
 </div>

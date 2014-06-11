@@ -55,7 +55,7 @@
 
 				<!-- Right Menu -->
 				<ion-side-menu side="right" is-enabled="canOpenRightMenu()">
-					<div ng-show="canShow(['JuMeFood', 'Turntable', 'NewRoom'])">
+					<div ng-show="canShow(['JuMeFood', 'NewRoom'])">
 						<div class="bar bar-header bar-assertive">
 							<h1 class="title">聊天室列表</h1>
 						</div>
@@ -75,7 +75,7 @@
 						</ion-content>
 					</div>
 
-					<div ng-show="canShow(['Room'])">
+					<div ng-show="canShow(['Room', 'Turntable'])">
 						<div class="bar bar-header bar-assertive">
 							<h1 class="title">意見列表</h1>
 						</div>
@@ -134,23 +134,23 @@
 								</div>
 								<div class="item item-icon-right item-stable" 
 									ng-click="lMoveTo('JuMeFood')">
-									<span class="bloder">回首頁</span>
+									<span class="bloder">首頁</span>
 									<i class="icon ion-home"></i>
 								</div>
 								<div class="item item-icon-right item-stable" 
 									ng-click="lMoveTo('NewRoom')">
-									<span class="bloder">揪新團</span>
+									<span class="bloder">揪食朋友</span>
 									<i class="icon ion-ios7-plus"></i>
 								</div>
 								<div class="item item-icon-right item-stable"
-									ng-show="!canShow(['Room'])"
+									ng-show="!canShow(['Room', 'Turntable'])"
 									ng-click="lMoveToRoomList()">
-									<span class="bloder">揪團列表</span>
+									<span class="bloder">我的揪食</span>
 									<i class="icon ion-chatboxes"></i>
 								</div>
 								<div class="item item-icon-right item-stable" 
 									ng-click="lMoveTo('Turntable')">
-									<span class="bloder">美食轉轉樂</span>
+									<span class="bloder">揪食搖搖</span>
 									<i class="icon ion-coffee"></i>
 								</div><br />
 							</div>
