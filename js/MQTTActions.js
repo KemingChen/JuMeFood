@@ -1,4 +1,4 @@
-app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
+app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $state) {
 	function listInvited(datas){
 		if(!isError(datas)){
 			var invitedList = datas.invitedList;
@@ -83,6 +83,8 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
 			datas.master = getMaster(datas);
 			datas.time = datas.time * 1000;
 			Core.addRoom(datas);
+			$rootScope.hideLoading();
+			$state.go("Room", {rid: datas.rid});
 		}
 		else{
 			console.log(datas.errors);

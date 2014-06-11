@@ -1,4 +1,4 @@
-app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, Core, $stateParams, Notification){
+app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, Core, $stateParams, Notification, ServerAPI){
 	var rid = $stateParams.rid;
 	var roomList = Core.roomList;
 
