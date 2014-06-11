@@ -1,8 +1,10 @@
 <div>
 	<div class="bar bar-header bar-positive">
-		<button class="button" ng-click="listMsg()">同步訊息</button>
+		<button class="button icon-left ion-navicon button-clear"
+			ng-click="slideLeft()"></button>
 		<h1 class="title">{{room.title}}</h1>
-		<button class="button" ng-click="scrollBottom()">滑到底部</button>
+		<button class="button icon-left ion-android-note button-clear"
+			ng-click="slideRight()"></button>
 	</div>
 	<ion-content has-header="true" padding="true" class="JuMe-background">
 		<div class="list" style="padding-bottom: 50px;">

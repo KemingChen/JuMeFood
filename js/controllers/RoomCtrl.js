@@ -1,4 +1,4 @@
-app.controller('RoomCtrl', function($scope, $rootScope, Core, $stateParams){
+app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, Core, $stateParams){
 	var roomId = $stateParams.roomId;
 	var roomList = Core.roomList;
 
@@ -7,6 +7,14 @@ app.controller('RoomCtrl', function($scope, $rootScope, Core, $stateParams){
 
 	$rootScope.$broadcast('EnterRoom', {room: $scope.room});
 	console.log($scope.room);
+
+	$scope.slideLeft = function(){
+		$ionicSideMenuDelegate.toggleLeft($scope);
+	}
+
+	$scope.slideRight = function(){
+		$ionicSideMenuDelegate.toggleRight($scope);
+	}
 
 	function throwRoomError(roomId){
 		throw "No This Room ID: " + roomId;
