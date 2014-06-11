@@ -4,8 +4,10 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 
 	$scope.selfId = $rootScope.info.uid;
 	$scope.room = roomList[rid] ? roomList[rid] : throwRoomError(rid);
-
+	console.log(JSON.stringify($scope.room));
+	
 	if($scope.room.members == {}){
+		console.log("Update Room Info!!!");
 		ServerAPI.listRoomMsg({rid: rid});
 		ServerAPI.listRoomMembers({rid: rid});
 		ServerAPI.listRoomAdvices({rid: rid});
@@ -16,6 +18,7 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 	$scope.$on('NewMsg', function(event, args) {
 		console.log(JSON.stringify(args));
 		if(rid === args.rid){
+			$scope.$apply();
 			$timeout($ionicScrollDelegate.scrollBottom, 500);
 		}
 		console.log(JSON.stringify($scope.room));
