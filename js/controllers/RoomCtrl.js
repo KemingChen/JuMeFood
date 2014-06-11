@@ -18,7 +18,8 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 
 	$scope.$on('NewMsg', function(event, args) {
 		console.log(JSON.stringify(args));
-		if(rid === args.rid){
+		console.log(rid == args.rid);
+		if(rid == args.rid){
 			$scope.$apply();
 			$timeout($ionicScrollDelegate.scrollBottom, 500);
 		}
