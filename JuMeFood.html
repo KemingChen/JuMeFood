@@ -82,10 +82,10 @@
 							<div class="list">
 								<div ng-repeat="advise in room.advises" 
 									class="item item-avatar item-stable">
-									<img ng-src="{{room.members[advise.uId].photo}}"/>
+									<img ng-src="{{room.members[advise.uid].photo}}"/>
 									<h2 class="bloder">{{advise.name}}</h2>
 									<span style="font-size: 10px;">
-										By {{room.members[advise.uId].name}}
+										By {{room.members[advise.uid].name}}
 									</span>
 								</div><br />
 

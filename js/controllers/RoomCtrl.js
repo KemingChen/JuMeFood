@@ -1,7 +1,8 @@
-app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, Core, $stateParams){
+app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, Core, $stateParams, Notification){
 	var rid = $stateParams.rid;
 	var roomList = Core.roomList;
 
+	console.log($rootScope.info);
 	$scope.selfId = $rootScope.info.uid;
 	$scope.room = roomList[rid] ? roomList[rid] : throwRoomError(rid);
 
@@ -16,12 +17,31 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 		$ionicSideMenuDelegate.toggleRight($scope);
 	}
 
-	function throwRoomError(rid){
-		throw "No This Room ID: " + rid;
+	$scope.typeMessage = function(){
+		console.log("Type Message!!!");
+		Notification.prompt('Chat in ' + $scope.room.title,
+			function(answer){
+				console.log(JSON.stringify(answer));
+				if (answer.buttonIndex === 1) {
+					// 取消
+				}
+				else {
+					// 送出
+					var message = answer.input1;
+					if(message.trim() != ""){
+						ServerAPI.sendMsg({
+							rid: $scope.room.rid,
+							message: message,
+						});
+					}
+				}
+			},
+			'輸入訊息',
+			['取消','送出']
+		);
 	}
 
-	/* ------- Test ------------ */
-	$scope.test = function(){
-		$rootScope.$broadcast('EnterRoom', {room: $scope.room});
+	function throwRoomError(rid){
+		throw "No This Room ID: " + rid;
 	}
 });
