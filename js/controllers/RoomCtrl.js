@@ -1,4 +1,4 @@
-app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, Core, $stateParams, Notification, ServerAPI){
+app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, Core, $stateParams, Notification, ServerAPI, $ionicScrollDelegate, $timeout){
 	var rid = $stateParams.rid;
 	var roomList = Core.roomList;
 
@@ -6,7 +6,16 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 	$scope.selfId = $rootScope.info.uid;
 	$scope.room = roomList[rid] ? roomList[rid] : throwRoomError(rid);
 
+	ServerAPI.listRoomMsg({rid: rid});
 	$rootScope.$broadcast('EnterRoom', {room: $scope.room});
+
+	$scope.$on('NewMsg', function(event, args) {
+		console.log(args);
+		if(rid === args.rid){
+			$timeout($ionicScrollDelegate.scrollBottom, 500);
+		}
+	});
+
 	console.log($scope.room);
 
 	$scope.slideLeft = function(){

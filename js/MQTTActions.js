@@ -72,6 +72,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 				Msg.timestamp = datas.timestamp * 1000;
 				Core.addChat(Msg);
 			}
+			$rootScope.$broadcast('NewMsg', {rid: datas.rid});
 		}
 		else{
 			console.log(datas.errors);
@@ -129,6 +130,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		if(!isError(datas)){
 			datas.timestamp = datas.timestamp * 1000;
 			Core.addChat(datas);
+			$rootScope.$broadcast('NewMsg', {rid: datas.rid});
 		}
 		else{
 			console.log(datas.errors);
