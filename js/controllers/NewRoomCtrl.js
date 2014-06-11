@@ -8,7 +8,10 @@ app.controller('NewRoomCtrl', function($scope, $window, Core, $state, $ionicSide
 		});
 		$state.go(state);
 	}
-	
+	$scope.Leave = function(){
+		$state.go('JuMeFood');
+	}
+
 	$scope.slideLeft = function(){
 		$ionicSideMenuDelegate.toggleLeft($scope);
 	}
