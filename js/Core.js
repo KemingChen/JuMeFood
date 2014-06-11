@@ -1,4 +1,4 @@
-app.factory("Core", function() {
+app.factory("Core", function($window, $rootScope) {
 	var temps = {};
 	var roomList = {};
 
@@ -75,6 +75,21 @@ app.factory("Core", function() {
 		return temps[tag];
 	}
 
+	function setHost(datas){
+		$window.localStorage['host'] = JSON.stringify(datas);
+	}
+
+	function getHost(){
+		return $window.localStorage['host'] ? JSON.parse($window.localStorage['host']) : {};
+	}
+
+	function checkLogin(){
+		if($rootScope.info.token){
+			return true;
+		}
+		$window.location = "#/login";
+	}
+
 	// --------- Test ------------- //
 	addRoom({roomId: 1, master: {uId: 1, name: "Flex", photo: "http://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t1.0-1/c37.55.466.466/s160x160/547766_578607275491125_1443285479_n.jpg"}, title: "午餐吃啥好哩", time: "2014-06-9 12:00:00"})
 	addRoom({roomId: 2, master: {uId: 2, name: "Keming", photo: "http://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t1.0-1/c21.76.462.462/s160x160/546081_4583705557198_1334797284_n.jpg"}, title: "想逛夜市拉!!!!", time: "2014-06-8 18:00:00"})
@@ -101,5 +116,10 @@ app.factory("Core", function() {
 		getTemp: getTemp,
 		createTemp: createTemp,
 		deleteTemp: deleteTemp,
+
+		setHost: setHost,
+		getHost: getHost,
+
+		checkLogin: checkLogin,
 	}
 });

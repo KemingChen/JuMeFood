@@ -1,4 +1,6 @@
 app.controller('JuMeFoodCtrl', function($scope, $state, $ionicSideMenuDelegate, Core, Notification){
+	Core.checkLogin();
+
 	$scope.MoveTo = function(state){
 		if(state == ""){
 			Notification.alert("Coming Soon...", null, "施工中!!!", "朕知道了");
