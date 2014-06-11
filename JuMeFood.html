@@ -57,7 +57,7 @@
 				<ion-side-menu side="right" is-enabled="canOpenRightMenu()">
 					<div ng-show="canShow(['JuMeFood', 'NewRoom'])">
 						<div class="bar bar-header bar-assertive">
-							<h1 class="title">我的糾食</h1>
+							<h1 class="title">我的揪食</h1>
 						</div>
 						<ion-content has-header="true" padding="false">
 							<div ng-repeat="room in roomList" 
@@ -83,10 +83,10 @@
 							<div class="list">
 								<div ng-repeat="advise in room.advises" 
 									class="item item-avatar item-stable">
-									<img ng-src="{{room.members[advise.uId].photo}}"/>
+									<img ng-src="{{room.members[advise.uid].photo}}"/>
 									<h2 class="bloder">{{advise.name}}</h2>
 									<span style="font-size: 10px;">
-										By {{room.members[advise.uId].name}}
+										By {{room.members[advise.uid].name}}
 									</span>
 								</div><br />
 

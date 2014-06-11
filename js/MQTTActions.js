@@ -1,11 +1,11 @@
-app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
+app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $state) {
 	function listInvited(datas){
 		if(!isError(datas)){
 			var invitedList = datas.invitedList;
 			for(var i in invitedList){
 				var invited = invitedList[i];
 				invited.master = getMaster(invited);
-				invited.time = (new Date(invited.time)).getTime();
+				invited.time = invited.time * 1000;
 				Core.addInvited(invited);
 			}
 		}
@@ -17,11 +17,11 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
 
 	function listRooms(datas){
 		if(!isError(datas)){
-			var rooms = datas.roomList;
+			var rooms = datas;
 			for(var i in rooms){
 				var room = rooms[i];
 				room.master = getMaster(room);
-				room.time = (new Date(room.time)).getTime();
+				room.time = room.time * 1000;
 				Core.addRoom(room);
 			}
 		}
@@ -69,8 +69,10 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
 			for(var i in Msgs){
 				var Msg = Msgs[i];
 				Msg.rid = datas.rid;
+				Msg.timestamp = Msg.timestamp * 1000;
 				Core.addChat(Msg);
 			}
+			$rootScope.$broadcast('NewMsg', {rid: datas.rid});
 		}
 		else{
 			console.log(datas.errors);
@@ -81,7 +83,10 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
 	function createRoom(datas){
 		if(!isError(datas)){
 			datas.master = getMaster(datas);
+			datas.time = datas.time * 1000;
 			Core.addRoom(datas);
+			$rootScope.hideLoading();
+			$state.go("Room", {rid: datas.rid});
 		}
 		else{
 			console.log(datas.errors);
@@ -92,6 +97,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
 	function newInvited(datas){
 		if(!isError(datas)){
 			datas.master = getMaster(datas);
+			datas.time = datas.time * 1000;
 			Core.addInvited(datas);
 		}
 		else{
@@ -122,7 +128,9 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core) {
 
 	function sendMsg(datas){
 		if(!isError(datas)){
+			datas.timestamp = datas.timestamp * 1000;
 			Core.addChat(datas);
+			$rootScope.$broadcast('NewMsg', {rid: datas.rid});
 		}
 		else{
 			console.log(datas.errors);

@@ -1,4 +1,4 @@
-app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state, $ionicSideMenuDelegate, FacebookAPI){
+app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state, $ionicSideMenuDelegate, FacebookAPI, ServerAPI){
 	$scope.MoveTo = function(state){
 		Core.createTemp("NewRoom", {
 			friends: $scope.friends,
@@ -9,12 +9,25 @@ app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state
 		$state.go(state);
 	}
 
+	$scope.changeTitle = function(title){
+		$scope.title = title;
+	}
+
 	$scope.Leave = function(){
 		$state.go('JuMeFood');
 	}
 
+	$scope.newRoom = function(){
+		$rootScope.showLoading("New Room...");
+		ServerAPI.createRoom({
+			time: Math.round(getStartTime().getTime() / 1000),
+			name: $scope.title,
+			FBIds: Object.keys($scope.friends),
+		});
+	}
+
 	$scope.canGo = function(){
-		console.log($scope.title);
+		// console.log($scope.title);
 		return $scope.title.trim() != "" && !$scope.isNoFriends();
 	}
 
@@ -65,7 +78,7 @@ app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state
 			$rootScope.showLoading("Loading Facebook...");
 			$scope.friends = {};
 			$scope.title = "";
-			$scope.startTime = getInitTime();
+			$scope.startTime = $rootScope.getInitTime();
 			FacebookAPI.login(function(){
 				$scope.FBFriends = FacebookAPI.friends(function(FBFriends){
 					console.log(FBFriends);
@@ -100,23 +113,6 @@ app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state
 			date: time,
 			time: time,
 		}
-	}
-
-	function getInitTime(){
-		var time = new Date();
-		time.setMinutes(time.getMinutes() + 20);
-		var hour = time.getHours();
-		var min = time.getMinutes();
-		if(min > 30){
-			time.setMinutes(0);
-			time.setHours(hour + 1);
-		}
-		else{
-			time.setMinutes(30);
-		}
-		time.setMilliseconds(0);
-		time.setSeconds(0);
-		return time;
 	}
 
 	$scope.isNoFriends = function (){
