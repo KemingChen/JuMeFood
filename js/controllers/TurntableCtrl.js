@@ -57,8 +57,9 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 					number: 1,
 					onEnd: function(result){
 						console.log("finish");
+						console.log(result[0]);
 						var keys = Object.keys($scope.room.advices);
-						var store = $scope.room.advices[keys[result[0]]];
+						var store = $scope.room.advices[keys[result[0] - 1]];
 						console.log(store);
 						$scope.selectSid = store.sid;
 						$scope.canShowMap = true;

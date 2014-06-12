@@ -15,6 +15,18 @@ a, abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, c
 	height: 400px;
 }
 
+.labels {
+	color: red;
+	background-color: white;
+	font-family: "Lucida Grande", "Arial", sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	width: 60px;     
+	border: 2px solid black;
+	white-space: nowrap;
+}
+
 .JuMe-background{
 	background-image: url("../images/tiles.png");
 }
