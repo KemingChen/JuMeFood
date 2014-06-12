@@ -11,6 +11,7 @@ app.controller('NewAdviceCtrl', function($scope, $state, $ionicSideMenuDelegate,
 	}
 
 	$scope.changeOption = function(option){
+		$scope.selectId = null;
 		if(option.trim() == "")
 			$scope.showOptionName = false;
 		else
@@ -19,10 +20,11 @@ app.controller('NewAdviceCtrl', function($scope, $state, $ionicSideMenuDelegate,
 	}
 
 	$scope.select = function(store){
+		$scope.selectId = store.sid;
 		$scope.showOptionName = store.name;
 		$scope.selection = store;
 	}
-
+	
 	$scope.canShow = function(store){
 		var result = $scope.search.trim() == "" ? true : (store.name.match($scope.search) ? true : false);
 		// console.log("check canShow: " + result);

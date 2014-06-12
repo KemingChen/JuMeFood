@@ -111,3 +111,8 @@ ul {
 	vertical-align: middle;
 	text-align: center;
 }
+
+.selected{
+	background-color: #999999;
+	color: #EEEEEE;
+}

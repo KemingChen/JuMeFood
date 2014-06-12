@@ -23,16 +23,16 @@
 				<input type="text" placeholder="Search" ng-model="search" 
 					ng-change="filter(search)" />
 			</label>
-			<label class="item item-radio" ng-repeat="store in stores"
-				ng-click="select(store)" ng-show="canShow(store)">
-				<input type="radio" name="selection" ng-model="test" />
+			<label class="item" ng-repeat="store in stores"
+				ng-click="select(store)" ng-show="canShow(store)"
+				ng-class="selectId == store.sid ? 'selected' : ''">
 				<div class="item-content row">
 					<div class="col">{{store.name}}</div>
 					<div class="col"><span class="badge badge-assertive">平均價位{{store.price}}</span></div>
 				</div>
-				<i class="radio-icon ion-checkmark"></i>
 			</label>
 		</div>
+		<div class="list" style="padding-bottom: 50px;"></div>
 	</ion-content>
 	<div class="bar bar-footer">
 		<div class="col col-80">

@@ -76,7 +76,7 @@ app.controller('MenuCtrl', function($scope, $state, $rootScope, Core, $ionicSide
 
 	$scope.hasEnoughAdvices = function(){
 		if(!($scope.room && $scope.room.master.uid == $rootScope.info.uid))
-			return false;
+			return true;
 		if($scope.room){
 			var advicesLength = Object.keys($scope.room.advices).length;
 			var memberLength = Object.keys($scope.room.members).length;
