@@ -41,6 +41,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/NewAdvice/:rid',
 			templateUrl: 'templates/newAdvice.html',
 			controller: 'NewAdviceCtrl'
+		})
+		.state('Map', {
+			url: '/Map/:name/:latitude/:longitude',
+			templateUrl: 'templates/map.html',
+			controller: 'MapCtrl'
 		});
 	// $urlRouterProvider.otherwise("/Reminder/0961276368/3");
 });
