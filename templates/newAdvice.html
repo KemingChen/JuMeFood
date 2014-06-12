@@ -9,7 +9,7 @@
 			<label class="item item-input">
 				<i class="icon ion-arrow-right-c placeholder-icon"></i>
 				<input type="text" placeholder="輸入自己的意見" 
-					ng-model="customOpinion" ng-change="changeOpinion(customOpinion)" />
+					ng-model="customOption" ng-change="changeOption(customOption)" />
 			</label>
 		</div>
 		<div class="card">
@@ -20,10 +20,12 @@
 		<div class="list">
 			<label class="item item-input">
 				<i class="icon ion-search placeholder-icon"></i>
-				<input type="text" placeholder="Search" ng-model="search" ng-change="filter(search)" />
+				<input type="text" placeholder="Search" ng-model="search" 
+					ng-change="filter(search)" />
 			</label>
-			<label class="item item-radio" ng-repeat="store in filterStores" ng-click="select(store)">
-				<input type="radio" name="group">
+			<label class="item item-radio" ng-repeat="store in stores"
+				ng-click="select(store)" ng-show="canShow(store)">
+				<input type="radio" name="selection" />
 				<div class="item-content row">
 					<div class="col">{{store.name}}</div>
 					<div class="col"><span class="badge badge-assertive">平均價位{{store.price}}</span></div>
@@ -36,7 +38,16 @@
 		<div class="col">
 			<button class="button icon ion-checkmark-round button-balanced" 
 				style="width:100%;margin:-10px;margin-left: auto;"
-				ng-click="ok()">
+				ng-click="ok()" ng-show="showOptionName">
+				<span style="font-size: 18px;">
+					({{showOptionName}})
+				</span>
+			</button>
+			<button class="button button-balanced" ng-show="!showOptionName" 
+				style="width:100%;margin:-10px;margin-left: auto;">
+				<span style="font-size: 18px;">
+					還沒選擇唷~
+				</span>
 			</button>
 		</div>
 		<div class="col">

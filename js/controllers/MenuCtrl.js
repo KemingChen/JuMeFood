@@ -19,7 +19,7 @@ app.controller('MenuCtrl', function($scope, $state, Core, $ionicSideMenuDelegate
 
 	$scope.rMoveToNewAdvice = function(){
 		$ionicSideMenuDelegate.toggleRight($scope);
-		$state.go('NewAdvice');
+		$state.go('NewAdvice', {rid: $scope.room.rid});
 	}
 
 	$scope.rMoveToTurnable = function(){

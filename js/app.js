@@ -38,7 +38,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			controller: 'TurntableCtrl'
 		})
 		.state('NewAdvice', {
-			url: '/NewAdvice',
+			url: '/NewAdvice/:rid',
 			templateUrl: 'templates/newAdvice.html',
 			controller: 'NewAdviceCtrl'
 		});
