@@ -11,7 +11,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -27,7 +27,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -43,7 +43,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -59,7 +59,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -76,7 +76,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -90,7 +90,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -102,7 +102,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -112,7 +112,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -122,7 +122,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -134,7 +134,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -146,7 +146,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -156,7 +156,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -172,7 +172,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
@@ -188,7 +188,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 		else{
 			console.log(datas.errors);
-			Notification.alert(datas.errors.code, null, "Error", "確定");
+			Notification.alert(datas.errors, null, "Error", "確定");
 		}
 	}
 
