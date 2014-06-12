@@ -23,7 +23,7 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 			$scope.$apply();
 			$timeout($ionicScrollDelegate.scrollBottom, 500);
 		}
-		console.log(JSON.stringify($scope.room));
+		// console.log(JSON.stringify($scope.room));
 	});
 
 	$rootScope.$on('QuitRoom', function(event, args) {
