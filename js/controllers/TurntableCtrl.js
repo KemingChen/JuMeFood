@@ -1,9 +1,15 @@
 app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $ionicSideMenuDelegate, ServerAPI){
 	// $scope.room = Core.roomList[1];
-	$scope.room = Core.getTemp("Turntable");
-	console.log(JSON.stringify($scope.room));
-	console.log($scope.room);
-	$rootScope.$broadcast('EnterRoom', {room: $scope.room});
+	init();
+
+	function init(){
+		$scope.room = Core.getTemp("Turntable");
+		console.log(JSON.stringify($scope.room));
+		$rootScope.$broadcast('EnterRoom', {room: $scope.room});
+		$scope.$on('RefreshTurntable', function(event, args) {
+			init();
+		});
+	}
 
 	function getIndex(goal){
 		var advices = $scope.room.advices;
