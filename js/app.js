@@ -52,7 +52,7 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 		server: "http://140.124.181.190:8888",//"http://192.168.20.101:8888",
 		timeout: 15000,
 		gcmSenderId: '389225011519',
-		FBAppId: '270369976420378',
+		FBAppId: '1508615159367232',//'270369976420378',
 	};
 	console.log($rootScope.info.server);
 	FacebookAPI.init();

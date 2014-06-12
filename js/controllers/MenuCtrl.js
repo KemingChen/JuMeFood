@@ -58,4 +58,9 @@ app.controller('MenuCtrl', function($scope, $state, $rootScope, Core, $ionicSide
 	$scope.isRoomsEmpty = function(){
 		return Object.keys($scope.roomList).length == 0;
 	}
+
+	$scope.quitRoom = function(){
+		ServerAPI.quitRoom({rid: $scope.room.rid});
+		$ionicSideMenuDelegate.toggleRight($scope);
+	}
 });

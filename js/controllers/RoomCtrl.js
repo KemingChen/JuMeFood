@@ -1,4 +1,4 @@
-app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, Core, $stateParams, Notification, ServerAPI, $ionicScrollDelegate, $timeout){
+app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, Core, $state, $stateParams, Notification, ServerAPI, $ionicScrollDelegate, $timeout){
 	var rid = $stateParams.rid;
 	var roomList = Core.roomList;
 
@@ -24,6 +24,12 @@ app.controller('RoomCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, 
 			$timeout($ionicScrollDelegate.scrollBottom, 500);
 		}
 		console.log(JSON.stringify($scope.room));
+	});
+
+	$rootScope.$on('QuitRoom', function(event, args) {
+		if(rid == args.rid){
+			$state.go("JuMeFood");
+		}
 	});
 
 	console.log($scope.room);

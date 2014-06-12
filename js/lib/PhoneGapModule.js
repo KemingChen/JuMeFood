@@ -110,6 +110,7 @@ angular.module('PhoneGap').factory('PushNotificationsFactory', function ($rootSc
             // run on the chrome
             if(typeof(device) == "undefined"){
                 console.log("run on the chrome");
+                $rootScope.info.gcmRegId = "NoGCMID";
                 $rootScope.testLogin();
                 return false;
             }

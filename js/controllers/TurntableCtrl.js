@@ -1,5 +1,6 @@
 app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $ionicSideMenuDelegate, ServerAPI){
 	// $scope.room = Core.roomList[1];
+	var isCreateJSlots = false;
 	init();
 
 	function init(){
@@ -46,15 +47,18 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 		console.log('go');
 		if($scope.room.rid == "self")
 		{
-			$('.slot').jSlots({
-				spinner: '#playGo',
-				number: 1,
-				onEnd: function(result){
-					console.log("finish");
-					var store = $scope.room.advices[result[0]];
-					console.log(store);
-				},
-			});
+			if(!isCreateJSlots){
+				isCreateJSlots = true;
+				$('.slot').jSlots({
+					spinner: '#playGo',
+					number: 1,
+					onEnd: function(result){
+						console.log("finish");
+						var store = $scope.room.advices[result[0]];
+						console.log(store);
+					},
+				});
+			}
 			$("#playGo").click();
 		}
 		else

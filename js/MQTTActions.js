@@ -108,6 +108,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 
 	function quitRoom(datas){
 		if(!isError(datas)){
+			$rootScope.$broadcast('QuitRoom', {rid: datas.rid});
 			delete Core.roomList[datas.rid];
 		}
 		else{
