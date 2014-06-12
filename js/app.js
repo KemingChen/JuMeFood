@@ -140,6 +140,35 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 		return time;
 	}
 
+	$rootScope.getSelfRoom = function(){
+		var info = $rootScope.info;
+		var room = {
+			rid: "self",
+			master: {
+				uid: info.uid,
+				name: info.name,
+				photo: info.photo,
+			},
+			title: "一個人的享受時光",
+			time: $rootScope.getInitTime().getTime(),
+			goalUId: null,
+			chats: {},
+			members: {"Server": {name: "Server", photo: "images/server.png", uid: "Server"}},
+			advices: {},
+		};
+		var stores = Core.stores;
+		console.log(stores);
+		for(var i in Core.stores){
+			var store = stores[i];
+			room.advices[store.sid] = {
+				sid: store.sid,
+				name: store.name,
+				uid: "Server",
+			};
+		}
+		return room;
+	}
+	
 	$window.receiveMessage = function(payload) {
 		var message = payload.length < 2000 ? payload : payload.length;
 		console.log('SUCCESS FROM MQTT: ' + message);

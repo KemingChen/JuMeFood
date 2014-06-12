@@ -9,31 +9,7 @@ app.controller('JuMeFoodCtrl', function($scope, $rootScope, $state, $ionicSideMe
 		if(state == "NewRoom")
 			Core.deleteTemp("NewRoom");
 		if(state == "Turntable"){
-			var info = $rootScope.info;
-			var room = {
-				rid: "self",
-				master: {
-					uid: info.uid,
-					name: info.name,
-					photo: info.photo,
-				},
-				title: "一個人的享受時光",
-				time: $rootScope.getInitTime().getTime(),
-				goalUId: null,
-				chats: {},
-				members: {"Server": {name: "Server", photo: "images/NoPhoto.jpg", uid: "Server"}},
-				advices: {},
-			};
-			var stores = Core.stores;
-			console.log(stores);
-			for(var i in Core.stores){
-				var store = stores[i];
-				room.advices[store.sid] = {
-					sid: store.sid,
-					name: store.name,
-					uid: "Server",
-				};
-			}
+			var room = $rootScope.getSelfRoom();
 			Core.createTemp("Turntable", room);
 		}
 			

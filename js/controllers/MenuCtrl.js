@@ -1,4 +1,4 @@
-app.controller('MenuCtrl', function($scope, $state, Core, $ionicSideMenuDelegate){
+app.controller('MenuCtrl', function($scope, $state, $rootScope, Core, $ionicSideMenuDelegate){
 	$scope.roomList = Core.roomList;
 
 	$scope.$on('EnterRoom', function(event, args) {
@@ -13,6 +13,12 @@ app.controller('MenuCtrl', function($scope, $state, Core, $ionicSideMenuDelegate
 	}
 
 	$scope.lMoveTo = function(state){
+		console.log(state);
+		if(state == "Turntable"){
+			var room = $rootScope.getSelfRoom();
+			Core.createTemp("Turntable", room);
+			$rootScope.$broadcast('RefreshTurntable', {});
+		}
 		$ionicSideMenuDelegate.toggleLeft($scope);
 		$state.go(state);
 	}
