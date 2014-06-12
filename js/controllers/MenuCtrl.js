@@ -65,10 +65,24 @@ app.controller('MenuCtrl', function($scope, $state, $rootScope, Core, $ionicSide
 	}
 
 	$scope.canGo = function(){
+		if(!$scope.hasEnoughAdvices())
+			return false;
 		return $scope.room && $scope.room.master.uid == $rootScope.info.uid && !$scope.room.goalUId;
 	}
 
 	$scope.canAddAdvice = function(){
 		return $scope.room && !$scope.room.goalUId;
+	}
+
+	$scope.hasEnoughAdvices = function(){
+		if(!($scope.room && $scope.room.master.uid == $rootScope.info.uid))
+			return false;
+		if($scope.room){
+			var advicesLength = Object.keys($scope.room.advices).length;
+			var memberLength = Object.keys($scope.room.members).length;
+			// console.log([advicesLength, memberLength]);
+			return advicesLength * 2 >= memberLength;
+		}
+		return false;
 	}
 });
