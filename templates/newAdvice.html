@@ -25,7 +25,7 @@
 			</label>
 			<label class="item item-radio" ng-repeat="store in stores"
 				ng-click="select(store)" ng-show="canShow(store)">
-				<input type="radio" name="selection" />
+				<input type="radio" name="selection" ng-model="test" />
 				<div class="item-content row">
 					<div class="col">{{store.name}}</div>
 					<div class="col"><span class="badge badge-assertive">平均價位{{store.price}}</span></div>
@@ -35,7 +35,7 @@
 		</div>
 	</ion-content>
 	<div class="bar bar-footer">
-		<div class="col">
+		<div class="col col-80">
 			<button class="button icon ion-checkmark-round button-balanced" 
 				style="width:100%;margin:-10px;margin-left: auto;"
 				ng-click="ok()" ng-show="showOptionName">
@@ -50,7 +50,7 @@
 				</span>
 			</button>
 		</div>
-		<div class="col">
+		<div class="col col-20">
 			<button class="button icon ion-close-round button-assertive" 
 				style="width:100%;margin:-10px;margin-left: auto;"
 				ng-click="cancel()">

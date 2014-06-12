@@ -117,7 +117,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		}
 	}
 
-	function addAdvice(datas){
+	function sendAdvice(datas){
 		if(!isError(datas)){
 			Core.addAdvice(datas);
 		}
@@ -219,7 +219,7 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 		createRoom: createRoom,
 		newInvited: newInvited,
 		quitRoom: quitRoom,
-		addAdvice: addAdvice,
+		sendAdvice: sendAdvice,
 		sendMsg: sendMsg,
 		listStore: listStore,
 		go: go,
