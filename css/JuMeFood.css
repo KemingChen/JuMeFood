@@ -11,6 +11,10 @@ a, abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, c
 	width: 320px;
 }
 
+#map-canvas {
+   	height: 400px;
+}
+
 .JuMe-background{
 	background-image: url("../images/tiles.png");
 }
