@@ -1,4 +1,4 @@
-app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $ionicSideMenuDelegate, ServerAPI){
+app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $ionicSideMenuDelegate, ServerAPI, $state){
 	// $scope.room = Core.roomList[1];
 	var isCreateJSlots = false;
 	init();
@@ -41,6 +41,10 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 		$("#playGo").click();
 	});
 
+	$scope.toMap = function(){
+		$state.go("Map", {sid: $scope.selectSid});
+	}
+
 	$scope.go = function(){
 		console.log('go');
 		if($scope.room.rid == "self")
@@ -56,6 +60,7 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 						var keys = Object.keys($scope.room.advices);
 						var store = $scope.room.advices[keys[result[0]]];
 						console.log(store);
+						$scope.selectSid = store.sid;
 						$scope.canShowMap = true;
 						$scope.$apply();
 					},

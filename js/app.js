@@ -43,7 +43,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			controller: 'NewAdviceCtrl'
 		})
 		.state('Map', {
-			url: '/Map/:name/:latitude/:longitude',
+			url: '/Map/:sid',
 			templateUrl: 'templates/map.html',
 			controller: 'MapCtrl'
 		});
