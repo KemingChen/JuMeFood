@@ -83,16 +83,23 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 		var response = Core.getHost();
 		if(response.token){
 			console.log("Auto Login...");
-			FacebookAPI.login(function(FBToken){
-				ServerAPI.login({
-					GCMId: $rootScope.info.gcmRegId,
-					FBToken: FBToken,
-				});
-			});
+			$rootScope.FacebookLogin();
 			return;
 		}
 
 		$window.location = "#/login";
+	}
+
+	$rootScope.FacebookLogin = function(){
+		FacebookAPI.login(function(FBToken){
+			ServerAPI.login({
+				GCMId: $rootScope.info.gcmRegId,
+				FBToken: FBToken,
+			});
+			FacebookAPI.friends(function(FBFriends){
+				Core.createTemp('FBFriends', FBFriends);
+			});
+		});
 	}
 
 	$rootScope.onLoginSuccess = function(response){

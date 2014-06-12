@@ -79,13 +79,8 @@ app.controller('NewRoomCtrl', function($scope, $rootScope, $window, Core, $state
 			$scope.friends = {};
 			$scope.title = "";
 			$scope.startTime = $rootScope.getInitTime();
-			FacebookAPI.login(function(){
-				$scope.FBFriends = FacebookAPI.friends(function(FBFriends){
-					console.log(FBFriends);
-					$scope.FBFriends = FBFriends;
-					$rootScope.hideLoading();
-				});
-			});
+			$scope.FBFriends = Core.getTemp('FBFriends');
+			$rootScope.hideLoading();
 		}
 		//use to implement cancel add friends
 		$scope.tempFriends = angular.copy($scope.friends);
