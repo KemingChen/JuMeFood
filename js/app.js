@@ -170,16 +170,29 @@ app.run(function($rootScope, $window, $ionicLoading, PushNotificationsFactory, P
 			advices: {},
 		};
 		var stores = Core.stores;
-		console.log(stores);
-		for(var i in Core.stores){
-			var store = stores[i];
+		var keys = shuffle(shuffle(Object.keys(stores)));
+		var count = 10;
+		// console.log(keys);
+		// console.log(stores);
+
+		for(var i in keys){
+			var store = stores[keys[i]];
 			room.advices[store.sid] = {
 				sid: store.sid,
 				name: store.name,
 				uid: "Server",
 			};
+
+			count--;
+			if(count == 1)
+				break;
 		}
 		return room;
+
+		function shuffle(o){ //v1.0
+			for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+			return o;
+		}
 	}
 	
 	$window.receiveMessage = function(payload) {
