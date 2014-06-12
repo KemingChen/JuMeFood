@@ -54,4 +54,8 @@ app.controller('MenuCtrl', function($scope, $state, $rootScope, Core, $ionicSide
 	$scope.canShow = function(array){
 		return array.indexOf($state.$current.name) >= 0;
 	}
+
+	$scope.isRoomsEmpty = function(){
+		return Object.keys($scope.roomList).length == 0;
+	}
 });

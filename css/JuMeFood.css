@@ -85,7 +85,6 @@ ul {
 .jSlots-wrapper {
     overflow: hidden;
     display: inline-block;
-    border: 1px solid #999;
     height: 100px;
     width: 100%;
 }
