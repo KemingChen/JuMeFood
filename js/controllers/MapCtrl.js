@@ -24,8 +24,8 @@ app.controller('MapCtrl', function($scope, $stateParams, Geolocation, Core){
 	}
 
 	$scope.init = function(){
-		// Geolocation.getCurrentPosition(function(position) {
-		testGeolocation(function(position){
+		Geolocation.getCurrentPosition(function(position) {
+		// testGeolocation(function(position){
 			console.log("Self Position: " + JSON.stringify(position));
 			var directionsService = new google.maps.DirectionsService();
 
