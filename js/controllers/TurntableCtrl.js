@@ -24,7 +24,6 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 	}
 
 	$rootScope.$on('GO', function(event, args) {
-		$scope.room.goalUId = args.goal;
 		$rootScope.hideLoading();
 
 		var winnerIndex = getIndex(args.goal);
@@ -35,8 +34,7 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 			winnerIndex: winnerIndex,
 			number: 1,
 			onEnd: function(result){
-				console.log("finish");
-				var store = $scope.room.advices[result[0]];
+				var store = $scope.room.advices[args.goal];
 				console.log(store);
 			},
 		});
@@ -47,6 +45,7 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 		console.log('go');
 		if($scope.room.rid == "self")
 		{
+			$scope.canShowMap = false;
 			if(!isCreateJSlots){
 				isCreateJSlots = true;
 				$('.slot').jSlots({
@@ -54,8 +53,11 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 					number: 1,
 					onEnd: function(result){
 						console.log("finish");
-						var store = $scope.room.advices[result[0]];
+						var keys = Object.keys($scope.room.advices);
+						var store = $scope.room.advices[keys[result[0]]];
 						console.log(store);
+						$scope.canShowMap = true;
+						$scope.$apply();
 					},
 				});
 			}
@@ -64,8 +66,17 @@ app.controller('TurntableCtrl', function($scope, $rootScope, Core, $timeout, $io
 		else
 		{
 			$rootScope.showLoading("同步中...");
+			isCreateJSlots = true;
 			ServerAPI.go({rid: $scope.room.rid});
 		}
+	}
+
+	$scope.canGo = function(){
+		if($scope.room && $scope.room.rid == "self")
+			return true;
+		if(!isCreateJSlots)
+			return true;
+		return false;
 	}
 
 	$scope.isNoAdvices = function(){

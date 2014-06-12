@@ -153,7 +153,11 @@ app.factory('MQTTActions', function($window, $rootScope, Notification, Core, $st
 
 	function go(datas){
 		if(!isError(datas)){
-			$rootScope.$broadcast('GO', datas);
+			var room = Core.roomList[datas.rid];
+			if(room){
+				room.goalUId = datas.goal;
+				$rootScope.$broadcast('GO', datas);
+			}
 		}
 		else{
 			console.log(datas.errors);

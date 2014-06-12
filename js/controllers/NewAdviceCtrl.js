@@ -4,7 +4,7 @@ app.controller('NewAdviceCtrl', function($scope, $state, $ionicSideMenuDelegate,
 	$scope.customOption = "";
 
 	$scope.stores = Core.stores;
-	console.log(stores);
+	console.log($scope.stores);
 
 	$scope.filter = function(key){
 		$scope.search = key;

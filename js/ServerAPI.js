@@ -139,6 +139,8 @@ app.factory('ServerAPI', function($window, $rootScope, $http, Notification, Core
 
 	function go(datas){
 		var http = toRequest("/go", datas, true);
+
+		// $window.receiveMessage('{"action":"go","data":{"rid":1,"goal":9}}');
 		
 		http.success(doNothing);
 		http.error(function(data, status){

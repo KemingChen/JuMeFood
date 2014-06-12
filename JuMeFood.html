@@ -94,12 +94,12 @@
 								</div><br />
 
 								<div class="item item-icon-right item-stable"
-									ng-click="rMoveToNewAdvice()">
+									ng-click="rMoveToNewAdvice()" ng-show="canAddAdvice()">
 									<span class="bloder">增加意見</span>
 									<i class="icon ion-beer"></i>
 								</div>
 								<div class="item item-icon-right item-stable" 
-									ng-click="rMoveToTurnable()">
+									ng-click="rMoveToTurnable()" ng-show="canGo()">
 									<span class="bloder">轉轉樂 ~ Go</span>
 									<i class="icon ion-coffee"></i>
 								</div>
@@ -118,17 +118,18 @@
 								<div class="item item-divider item-energized">
 									聊天室功能
 								</div>
+								<!--
 								<div class="item item-icon-right item-stable">
 									<span class="bloder">增加意見</span>
 									<i class="icon ion-beer"></i>
 								</div>
-								<!--
 								<div class="item item-icon-right item-stable">
 									<span class="bloder">邀請朋友</span>
 									<i class="icon ion-person-add"></i>
 								</div>
 								-->
-								<div class="item item-icon-right item-stable">
+								<div class="item item-icon-right item-stable"
+									ng-click="quitRoom()">
 									<span class="bloder">退出聊天室</span>
 									<i class="icon ion-log-out"></i>
 								</div><br />

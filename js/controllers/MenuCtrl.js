@@ -1,4 +1,4 @@
-app.controller('MenuCtrl', function($scope, $state, $rootScope, Core, $ionicSideMenuDelegate){
+app.controller('MenuCtrl', function($scope, $state, $rootScope, Core, $ionicSideMenuDelegate, ServerAPI){
 	$scope.roomList = Core.roomList;
 
 	$scope.$on('EnterRoom', function(event, args) {
@@ -61,6 +61,14 @@ app.controller('MenuCtrl', function($scope, $state, $rootScope, Core, $ionicSide
 
 	$scope.quitRoom = function(){
 		ServerAPI.quitRoom({rid: $scope.room.rid});
-		$ionicSideMenuDelegate.toggleRight($scope);
+		$ionicSideMenuDelegate.toggleLeft($scope);
+	}
+
+	$scope.canGo = function(){
+		return $scope.room && $scope.room.master.uid == $rootScope.info.uid && !$scope.room.goalUId;
+	}
+
+	$scope.canAddAdvice = function(){
+		return $scope.room && !$scope.room.goalUId;
 	}
 });
