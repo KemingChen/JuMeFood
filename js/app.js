@@ -46,6 +46,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/Map/:sid',
 			templateUrl: 'templates/map.html',
 			controller: 'MapCtrl'
+		})
+		.state('Recommend', {
+			url: '/Recommend',
+			templateUrl: 'templates/recommend.html',
+			controller: 'RecommendCtrl'
 		});
 	// $urlRouterProvider.otherwise("/Reminder/0961276368/3");
 });
